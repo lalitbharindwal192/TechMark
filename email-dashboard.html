@@ -109,13 +109,7 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link auth-btn mx-2" aria-current="page" href="index.html" style="background-color: #45d56d; border-radius: 5px;">Send email</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link mx-2" href="index.html">Inbox</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link mx-2" href="emailEditor.html">Templates</a>
+                <a class="nav-link auth-btn mx-2" aria-current="page" href="index.html" style="background-color: #45d56d; border-radius: 5px;">Send Emails</a>
               </li>
             </ul>
             <!--<ul class="navbar-nav ms-auto d-none d-lg-inline-flex">
@@ -317,7 +311,7 @@
                     location = "auth-signin.html";
                 }else{
                     document.getElementById("email-from").innerHTML = '<input class="email-input" value="'+ sessionStorage.getItem("emailid") +'" disabled>';
-                    flow(event) 
+                    flow(event)
                 }
                 var Log = true;
                 function processEmails() {
@@ -573,7 +567,6 @@ ${htmlContent}
 
         <!-- Script -->
         <!-- JAVASCRIPTS -->
-        <script src="js/jquery.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <!--TESTISLIDER JS-->
