@@ -30,7 +30,7 @@ function startOAuthFlow(clientId, redirect_uri) {
 
 function authenticate_code(authCode, event){
     let headers = new Headers();
-    headers.append('Origin','https://lsit-development.github.io');
+    headers.append('Origin','https://techmarkapp.netlify.app/');
     fetch('https://mr6s4xnd46.execute-api.us-east-1.amazonaws.com/codeoauth/', {
         method: 'POST',
         headers: headers,
