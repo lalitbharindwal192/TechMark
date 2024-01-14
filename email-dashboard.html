@@ -285,38 +285,48 @@
 
         <!-- Script -->
             <script>
-                const clientId = '695366327438-1klcrac1lj6oo79s5n6sifie8ieerrjj.apps.googleusercontent.com';
-                const redirectUri = 'https://techmarkapp.netlify.app/email-dashboard';
-                const clientSecret = "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"
-                const event = {
-                    "email": sessionStorage.getItem("emailid"),
-                    "clientId": clientId,
-                    "clientSecret": clientSecret,
-                    "redirect_uri": redirectUri
-                }
                 if(sessionStorage.getItem("emailid")==null){
-                    location = "auth-signin.html";
+                    if(localStorage.getItem("emailid")==null){
+                        location = "auth-signin.html";
+                    }else{
+                        sessionStorage.setItem("emailid", localStorage.getItem("emailid"));
+                        init()
+                    }
                 }else{
-                    flow(event)
-                    document.getElementById("part1").innerHTML =   `<div class="col-md-6">
-                                                                        <h5 style="color: white; font-weight: bold;">Compose Email</h5>
-                                                                        <label style="color: white; font-weight: bold;">From</label>
-                                                                    <div id="email-from"></div>
-                                                                        <label style="color: white; font-weight: bold;">Subject</label>
-                                                                        <input id="subject" class="email-input">
-                                                                        <label style="color: white; font-weight: bold;">To</label>
-                                                                        <textarea class="email-list" oninput="countLines()" placeholder="Enter Emails on newlines" id="email-list"></textarea>
-                                                                    <div style="color: white; font-weight: bold;"><span id="lineCount">Number of Lines: 0</span>&nbsp;&nbsp;&nbsp;<span id="validEmailCount">Number of valid emails: 0</span></div>
-                                                                    <br>
-                                                                </div>
-                                                                <div class="col-md-6" id="send-emails-btn-row">
-                                                                    <h5 style="color: white; font-weight: bold;">Valid Emails</h5>
-                                                                    <div id="valid-emails-frame">
-                                                                        <ol id="valid-emails"></ol>
-                                                                    </div>
-                                                                </div>`;
-                                                                document.getElementById("email-from").innerHTML = '<input class="email-input" value="'+ sessionStorage.getItem("emailid") +'" disabled>';
+                    init()
                 }
+
+                function init(){
+                        const clientId = '695366327438-1klcrac1lj6oo79s5n6sifie8ieerrjj.apps.googleusercontent.com';
+                        const redirectUri = 'https://techmarkapp.netlify.app/email-dashboard';
+                        const clientSecret = "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"
+                        const event = {
+                            "email": sessionStorage.getItem("emailid"),
+                            "clientId": clientId,
+                            "clientSecret": clientSecret,
+                            "redirect_uri": redirectUri
+                        }
+                        flow(event)
+                        document.getElementById("part1").innerHTML =   `<div class="col-md-6">
+                                                                            <h5 style="color: white; font-weight: bold;">Compose Email</h5>
+                                                                            <label style="color: white; font-weight: bold;">From</label>
+                                                                        <div id="email-from"></div>
+                                                                            <label style="color: white; font-weight: bold;">Subject</label>
+                                                                            <input id="subject" class="email-input">
+                                                                            <label style="color: white; font-weight: bold;">To</label>
+                                                                            <textarea class="email-list" oninput="countLines()" placeholder="Enter Emails on newlines" id="email-list"></textarea>
+                                                                        <div style="color: white; font-weight: bold;"><span id="lineCount">Number of Lines: 0</span>&nbsp;&nbsp;&nbsp;<span id="validEmailCount">Number of valid emails: 0</span></div>
+                                                                        <br>
+                                                                    </div>
+                                                                    <div class="col-md-6" id="send-emails-btn-row">
+                                                                        <h5 style="color: white; font-weight: bold;">Valid Emails</h5>
+                                                                        <div id="valid-emails-frame">
+                                                                            <ol id="valid-emails"></ol>
+                                                                        </div>
+                                                                    </div>`;
+                                                                    document.getElementById("email-from").innerHTML = '<input class="email-input" value="'+ sessionStorage.getItem("emailid") +'" disabled>';
+                }
+
                 var Log = true;
                 function processEmails() {
                     // Get the value from the textarea

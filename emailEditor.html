@@ -270,7 +270,9 @@
         <!-- Script -->
             <script>
                 if(sessionStorage.getItem("emailid")==null){
-                    location = "auth-signin.html";
+                    if(localStorage.getItem("emailid")==null){
+                        location = "auth-signin.html";
+                    }
                 }
             </script>
         <!--Style-->

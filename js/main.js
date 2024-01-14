@@ -6,4 +6,5 @@ if(sessionStorage.getItem("emailid")==null){
 
 function logout(){
     sessionStorage.clear();
+    localStorage.clear();
 }

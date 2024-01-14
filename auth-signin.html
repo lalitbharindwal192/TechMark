@@ -87,7 +87,6 @@
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
                                             <label class="form-check-label" for="auth-remember-check">Remember me</label>
-                                            
                                         </div>
 
                                         <div class="mt-4">
@@ -116,7 +115,6 @@
                         <div class="mt-4 text-center">
                             <p class="mb-0">Don't have an account ? <a href="auth-signup.html" class="fw-semibold text-primary text-decoration-underline"> Signup </a> </p>
                         </div>
-
                     </div>
                 </div>
                 <!-- end row -->
@@ -144,16 +142,21 @@
     <!-- end auth-page-wrapper -->
 
     <script>
-        if(sessionStorage.getItem("emailid")!=null){
-            location = "email-dashboard.html"
+        if(sessionStorage.getItem("emailid")!=null || localStorage.getItem("emailid")!=null){
+            location = "services.html";
         }
         //Signin
         function login(){
+            console.log()
             const username = document.getElementById("username").value;
             const password = document.getElementById("password-input").value;
             if(username == "lalitbharindwal@gmail.com" || "apurvanaphade99@gmail.com" || "hirelanes@gmail.com" || "hr.vmaxinfo@gmail.com" || "manan.asnani@hotmail.com"){
                 if(password == "Techmark@192"){
-                    sessionStorage.setItem("emailid", username);
+                    if(document.getElementById("auth-remember-check").checked){
+                        localStorage.setItem("emailid", username);
+                    }else{
+                        sessionStorage.setItem("emailid", username);
+                    }
                     location = "services.html";
                 }else{
                     document.getElementById("incorrect-pass-label").innerHTML = "Incorrect Password"
