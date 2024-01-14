@@ -2,6 +2,33 @@
 <html lang="en" class="no-js">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
+    <!-- Mail API -->
+    <script src="mail/techmark-mail-api.js"></script>
+    <script>
+        if(sessionStorage.getItem("emailid")==null){
+            if(localStorage.getItem("emailid")==null){
+                location = "auth-signin.html";
+            }else{
+                sessionStorage.setItem("emailid", localStorage.getItem("emailid"));
+                init();
+            }
+        }else{
+            init();
+        }
+
+        function init(){
+                        const clientId = '695366327438-1klcrac1lj6oo79s5n6sifie8ieerrjj.apps.googleusercontent.com';
+                        const redirectUri = 'https://techmarkapp.netlify.app/email-dashboard';
+                        const clientSecret = "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"
+                        const event = {
+                            "email": sessionStorage.getItem("emailid"),
+                            "clientId": clientId,
+                            "clientSecret": clientSecret,
+                            "redirect_uri": redirectUri
+                        }
+                        flow(event);
+                }
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TechMark</title>
@@ -37,15 +64,11 @@
     <link href="css/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <!-- Mail API -->
-    <script src="mail/techmark-mail-api.js"></script>
-
     <meta charset="utf-8" />
 	<link rel="stylesheet" href="mail/editor/res/style.css" />
 </head>
 
     <body>
-
         <!-- START NAVBAR -->
         <nav class="navbar navbar-expand-lg fixed-top custom_nav_menu sticky">
             <div class="container">
@@ -147,8 +170,24 @@
             </div>
         </div>
 
-        <div class="row" id="part1">
-            
+        <div class="row">
+            <div class="col-md-6">
+                <h5 style="color: white; font-weight: bold;">Compose Email</h5>
+                <label style="color: white; font-weight: bold;">From</label>
+            <div id="email-from"></div>
+                <label style="color: white; font-weight: bold;">Subject</label>
+                <input id="subject" class="email-input">
+                <label style="color: white; font-weight: bold;">To</label>
+                <textarea class="email-list" oninput="countLines()" placeholder="Enter Emails on newlines" id="email-list"></textarea>
+            <div style="color: white; font-weight: bold;"><span id="lineCount">Number of Lines: 0</span>&nbsp;&nbsp;&nbsp;<span id="validEmailCount">Number of valid emails: 0</span></div>
+            <br>
+            </div>
+            <div class="col-md-6" id="send-emails-btn-row">
+                <h5 style="color: white; font-weight: bold;">Valid Emails</h5>
+                <div id="valid-emails-frame">
+                    <ol id="valid-emails"></ol>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -203,7 +242,7 @@
     </div>
     <hr>
         <!-- Footer Start -->
-        <section class="section_all bg_footer ">
+        <section class="section_all bg_footer">
             <div class="container ">
                 <div class="row ">
                     <div class="col-lg-4">
@@ -285,48 +324,7 @@
 
         <!-- Script -->
             <script>
-                if(sessionStorage.getItem("emailid")==null){
-                    if(localStorage.getItem("emailid")==null){
-                        location = "auth-signin.html";
-                    }else{
-                        sessionStorage.setItem("emailid", localStorage.getItem("emailid"));
-                        init()
-                    }
-                }else{
-                    init()
-                }
-
-                function init(){
-                        const clientId = '695366327438-1klcrac1lj6oo79s5n6sifie8ieerrjj.apps.googleusercontent.com';
-                        const redirectUri = 'https://techmarkapp.netlify.app/email-dashboard';
-                        const clientSecret = "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"
-                        const event = {
-                            "email": sessionStorage.getItem("emailid"),
-                            "clientId": clientId,
-                            "clientSecret": clientSecret,
-                            "redirect_uri": redirectUri
-                        }
-                        flow(event)
-                        document.getElementById("part1").innerHTML =   `<div class="col-md-6">
-                                                                            <h5 style="color: white; font-weight: bold;">Compose Email</h5>
-                                                                            <label style="color: white; font-weight: bold;">From</label>
-                                                                        <div id="email-from"></div>
-                                                                            <label style="color: white; font-weight: bold;">Subject</label>
-                                                                            <input id="subject" class="email-input">
-                                                                            <label style="color: white; font-weight: bold;">To</label>
-                                                                            <textarea class="email-list" oninput="countLines()" placeholder="Enter Emails on newlines" id="email-list"></textarea>
-                                                                        <div style="color: white; font-weight: bold;"><span id="lineCount">Number of Lines: 0</span>&nbsp;&nbsp;&nbsp;<span id="validEmailCount">Number of valid emails: 0</span></div>
-                                                                        <br>
-                                                                    </div>
-                                                                    <div class="col-md-6" id="send-emails-btn-row">
-                                                                        <h5 style="color: white; font-weight: bold;">Valid Emails</h5>
-                                                                        <div id="valid-emails-frame">
-                                                                            <ol id="valid-emails"></ol>
-                                                                        </div>
-                                                                    </div>`;
-                                                                    document.getElementById("email-from").innerHTML = '<input class="email-input" value="'+ sessionStorage.getItem("emailid") +'" disabled>';
-                }
-
+                document.getElementById("email-from").innerHTML = '<input class="email-input" value="'+ sessionStorage.getItem("emailid") +'" disabled>';
                 var Log = true;
                 function processEmails() {
                     // Get the value from the textarea
