@@ -329,7 +329,7 @@
                 // Get the value from the textarea
                 document.getElementById('send-emails-btn').disabled = true;
                 var text = document.getElementById('email-list').value;
-                var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio)\b/g;
+                var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|ventures)\b/g;
                 // Find all matches of valid email patterns in the textarea
                 var validEmails = text.match(emailRegex);
 
@@ -343,7 +343,7 @@
                             setTimeout(() => {
                                 sendMail(email.trim());
                                 tempCount++;
-                            }, index * 250);
+                            }, index * 500);
                         });
                     }
                 }else{
