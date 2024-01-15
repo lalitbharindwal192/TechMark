@@ -339,11 +339,11 @@
                 // Process the emails (for example, validation or further handling)
                 if(validEmails){
                     if(validEmailCount != tempCount || validEmailCount == tempCount){
-                        validEmails.forEach(email => {
-                        // Perform validation or use the emails as needed
-                        // Here, you can perform actions like validation or sending data to the server
-                            sendMail(email.trim());
-                            tempCount++;
+                        validEmails.forEach((email, index) => {
+                            setTimeout(() => {
+                                sendMail(email.trim());
+                                tempCount++;
+                            }, index * 250);
                         });
                     }
                 }else{
@@ -463,13 +463,13 @@ ${htmlContent}
                 document.getElementById("seccessEmails").innerHTML = "Success:" + Success;
             }else{
                 sessionStorage.setItem("bearer", "undefined");
-                document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Err1'+ data +'</td></tr>';
+                document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Failed: '+ data +'</td></tr>';
                 failed++;
                 document.getElementById("failedEmails").innerHTML = "Failed:" + failed;
                 startOAuthFlow(event["clientId"], event["redirect_uri"]);
             }
         }).catch(error => {
-         document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Err2'+ error.message +'</td></tr>';
+         document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Failed: '+ error.message +'</td></tr>';
     });
 }
     
