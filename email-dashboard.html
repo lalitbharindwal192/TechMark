@@ -401,7 +401,10 @@ ${lines}
 </body>
 </html>`;
 }
-            
+
+var Success = 0;
+var failed = 0;
+
 function sendMail(mailId){
                 
 const htmlContent = editor1.getHTMLCode();
@@ -438,8 +441,7 @@ ${htmlContent}
         // Your request body data (could be an object or any data format required by the API)
         "raw": btoa(unescape(encodeURIComponent(raw)))
     };
-    var Success = 0;
-    var failed = 0;
+    
     //const token = sessionStorage.getItem("bearer");
     fetch('https://gmail.googleapis.com/gmail/v1/users/'+ sessionStorage.getItem("emailid")+ '/messages/send', {
          method: 'POST', // Change the method accordingly (POST, PUT, etc.)
