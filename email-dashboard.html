@@ -462,14 +462,16 @@ ${htmlContent}
                 Success++;
                 document.getElementById("seccessEmails").innerHTML = "Success:" + Success;
             }else{
-                sessionStorage.setItem("bearer", "undefined");
-                document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Failed1: '+ data +'</td></tr>';
+                //sessionStorage.setItem("bearer", "undefined");
+                console.log("Failed 2", data);
+                document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Failed</td></tr>';
                 failed++;
                 document.getElementById("failedEmails").innerHTML = "Failed:" + failed;
-                startOAuthFlow(event["clientId"], event["redirect_uri"]);
+                //startOAuthFlow(event["clientId"], event["redirect_uri"]);
             }
         }).catch(error => {
-         document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Failed2: '+ error.message +'</td></tr>';
+         console.log("Failed 2", error.message);
+         document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Error</td></tr>';
     });
 }
     

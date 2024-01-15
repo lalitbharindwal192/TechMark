@@ -71,30 +71,3 @@ function getProfile(token, event){
             alert("Network Problem")
     });
 }
-
-// Function to decode base64 without using atob
-function decodeBase64(encodedString) {
-    const base64abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-    let decoded = '';
-  
-    for (let i = 0; i < encodedString.length;) {
-      const c1 = base64abc.indexOf(encodedString.charAt(i++));
-      const c2 = base64abc.indexOf(encodedString.charAt(i++));
-      const c3 = base64abc.indexOf(encodedString.charAt(i++));
-      const c4 = base64abc.indexOf(encodedString.charAt(i++));
-  
-      const chr1 = (c1 << 2) | (c2 >> 4);
-      const chr2 = ((c2 & 15) << 4) | (c3 >> 2);
-      const chr3 = ((c3 & 3) << 6) | c4;
-  
-      decoded += String.fromCharCode(chr1);
-  
-      if (c3 !== 64) {
-        decoded += String.fromCharCode(chr2);
-      }
-      if (c4 !== 64) {
-        decoded += String.fromCharCode(chr3);
-      }
-    }
-    return decoded;
-  }
