@@ -327,6 +327,7 @@
             var tempCount = 0;
             function processEmails() {
                 // Get the value from the textarea
+                document.getElementById('send-emails-btn').innerHTML = "Sending...";
                 document.getElementById('send-emails-btn').disabled = true;
                 var text = document.getElementById('email-list').value;
                 var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|ventures)\b/g;
@@ -350,6 +351,7 @@
                     tempCount = 0;
                 }
                 document.getElementById('send-emails-btn').disabled = false;
+                document.getElementById('send-emails-btn').innerHTML = "Send Email";
             }
 
             var temp = 0;
@@ -402,8 +404,8 @@ ${lines}
 </html>`;
 }
 
-var Success = 0;
-var failed = 0;
+var Success = 1;
+var failed = 1;
 
 function sendMail(mailId){
                 
@@ -459,18 +461,16 @@ ${htmlContent}
         }).then(data => {
             if(data["id"]){
                 document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: #45d56d;"><i class="fas fa-check"></i> SENT</td></tr>';
-                Success++;
                 document.getElementById("seccessEmails").innerHTML = "Success:" + Success;
+                Success++;
             }else{
                 //sessionStorage.setItem("bearer", "undefined");
-                console.log("Failed 2", data);
                 document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Failed</td></tr>';
-                failed++;
                 document.getElementById("failedEmails").innerHTML = "Failed:" + failed;
+                failed++;
                 //startOAuthFlow(event["clientId"], event["redirect_uri"]);
             }
         }).catch(error => {
-         console.log("Failed 2", error.message);
          document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Error</td></tr>';
     });
 }
