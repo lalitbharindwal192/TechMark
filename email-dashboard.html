@@ -319,31 +319,38 @@
         <script>
             document.getElementById("email-from").innerHTML = '<input class="email-input" value="'+ sessionStorage.getItem("emailid") +'" disabled>';
             var Log = true;
+            var tempCount = 0;
             function processEmails() {
                 // Get the value from the textarea
                 document.getElementById('send-emails-btn').disabled = true;
-                const textarea = document.getElementById('email-list');
-                const emailsText = textarea.value;
+                var text = document.getElementById('email-list').value;
                 var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio)\b/g;
+                // Find all matches of valid email patterns in the textarea
+                var validEmails = text.match(emailRegex);
+
+                // Count the number of valid emails
+                var validEmailCount = validEmails ? validEmails.length : 0;
                 // Split the text by new lines to get individual emails
-                const emailsArray = emailsText.split('\n');
                 // Process the emails (for example, validation or further handling)
-                emailsArray.forEach((email, index) => {
-                    // Perform validation or use the emails as needed
-                    // Here, you can perform actions like validation or sending data to the server
-                    // Find all matches of valid email patterns in the textarea
-                    if(email.trim().match(emailRegex)){
-                        if(Log){
-                            setTimeout(() => {
+                if(validEmails){
+                    if(validEmailCount != tempCount || validEmailCount == tempCount){
+                        validEmails.forEach(email => {
+                        // Perform validation or use the emails as needed
+                        // Here, you can perform actions like validation or sending data to the server
+                            if(Log){
                                 sendMail(email.trim());
-                            }, 500 * index);
-                        }else{
-                            return false
-                        }
-                    }
-                });
+                            }else{
+                                return false
+                            }
+                        tempCount++;
+                    });
+                }
+                }else{
+                    tempCount = 0;
+                }
                 document.getElementById('send-emails-btn').disabled = false;
             }
+
             var temp = 0;
             function countLines() {
                 var text = document.getElementById('email-list').value;
