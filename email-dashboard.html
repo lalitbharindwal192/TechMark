@@ -463,7 +463,7 @@ ${htmlContent}
                 document.getElementById("seccessEmails").innerHTML = "Success:" + Success;
             }else{
                 sessionStorage.setItem("bearer", "undefined");
-                document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i> FAILED</td></tr>';
+                document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>'+ data +'</td></tr>';
                 failed++;
                 document.getElementById("failedEmails").innerHTML = "Failed:" + failed;
                 startOAuthFlow(event["clientId"], event["redirect_uri"]);
