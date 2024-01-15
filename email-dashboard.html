@@ -27,7 +27,7 @@
                             "redirect_uri": redirectUri
                         }
                         flow(event);
-                }
+                    }
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -324,7 +324,7 @@
                 document.getElementById('send-emails-btn').disabled = true;
                 const textarea = document.getElementById('email-list');
                 const emailsText = textarea.value;
-                var emailRegex = /\b[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+(?:com|in)\b/g;
+                var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio)\b/g;
                 // Split the text by new lines to get individual emails
                 const emailsArray = emailsText.split('\n');
                 // Process the emails (for example, validation or further handling)
@@ -335,7 +335,7 @@
                     if(email.trim().match(emailRegex)){
                         if(Log){
                             setTimeout(() => {
-                                sendMail(email.trim())
+                                sendMail(email.trim());
                             }, 500 * index);
                         }else{
                             return false
@@ -349,23 +349,24 @@
                 var text = document.getElementById('email-list').value;
                 var lineCount = (text.match(/\n/g) || []).length + 1;
                 document.getElementById('lineCount').innerText = 'Number of Lines: ' + lineCount;
-                var emailRegex = /\b[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+(?:com|in)\b/g;
+                var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio)\b/g;
                 // Find all matches of valid email patterns in the textarea
                 var validEmails = text.match(emailRegex);
+
                 // Count the number of valid emails
                 var validEmailCount = validEmails ? validEmails.length : 0;
                 // Split the text by new lines to get individual emails
                 // Process the emails (for example, validation or further handling)
                 if(validEmails){
-                    if(validEmailCount != temp){
+                    if(validEmailCount != temp || validEmailCount == temp){
                         document.getElementById("valid-emails").innerHTML = "";
                         validEmails.forEach(email => {
                         // Perform validation or use the emails as needed
                         // Here, you can perform actions like validation or sending data to the server
-                        document.getElementById("valid-emails").innerHTML += "<li>"+ email.trim() +"</li>"; 
+                        document.getElementById("valid-emails").innerHTML += "<li>"+ email.trim() +"</li>";
                         temp++;
                     });
-                }     
+                }
              }else{
                 document.getElementById("valid-emails").innerHTML = "";
                 temp = 0;
