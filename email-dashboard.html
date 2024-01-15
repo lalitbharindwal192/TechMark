@@ -337,14 +337,10 @@
                         validEmails.forEach(email => {
                         // Perform validation or use the emails as needed
                         // Here, you can perform actions like validation or sending data to the server
-                            if(Log){
-                                sendMail(email.trim());
-                            }else{
-                                return false
-                            }
-                        tempCount++;
-                    });
-                }
+                            sendMail(email.trim());
+                            tempCount++;
+                        });
+                    }
                 }else{
                     tempCount = 0;
                 }
@@ -455,14 +451,12 @@ ${htmlContent}
             if(data["id"]){
                 document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: #45d56d;"><i class="fas fa-check"></i> SENT</td></tr>';
             }else{
-                sessionStorage.setItem("bearer", "undefined")
-                Log = false
+                sessionStorage.setItem("bearer", "undefined");
                 document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i> FAILED</td></tr>';
-                startOAuthFlow(event["clientId"], event["redirect_uri"])
+                startOAuthFlow(event["clientId"], event["redirect_uri"]);
             }
         }).catch(error => {
-         alert("Network Connection Error")
-         Log = false
+         document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i> FAILED</td></tr>';
     });
 }
     
