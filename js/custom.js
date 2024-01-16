@@ -1,5 +1,5 @@
 /*  Theme Name: Oflox - Responsive Multipurpose Business Template
-    Author: Saptavarana
+    Author: LSIT Development
     Version: 1.0.0
     Created:September 2018
     File Description:Main Js file of the template
