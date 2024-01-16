@@ -327,7 +327,6 @@
             var tempCount = 0;
             function processEmails() {
                 // Get the value from the textarea
-                document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px;max-width:960px; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending...</button>';
                 var text = document.getElementById('email-list').value;
                 var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|ventures)\b/g;
                 // Find all matches of valid email patterns in the textarea
@@ -341,6 +340,7 @@
                     if(validEmailCount != tempCount || validEmailCount == tempCount){
                         validEmails.forEach((email, index) => {
                             setTimeout(() => {
+                                document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px;max-width:960px; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending...</button>';
                                 sendMail(email.trim());
                                 tempCount++;
                             }, index * 500);
