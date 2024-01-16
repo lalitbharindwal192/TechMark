@@ -230,6 +230,7 @@
                 <div id="SuccessLog">
                     <table class="styled-table" id="mailLog">
                         <tr>
+                            <th>No</th>
                             <th>Email Address</th>
                             <th>Sending Status</th>
                         </tr>
@@ -407,7 +408,7 @@ ${lines}
 
 var Success = 1;
 var failed = 1;
-
+var EmailCount = 1;
 function sendMail(mailId){
                 
 const htmlContent = editor1.getHTMLCode();
@@ -462,20 +463,21 @@ ${htmlContent}
         }).then(data => {
             if(data["id"]){
                 console.log(data)
-                document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: #45d56d;"><i class="fas fa-check"></i> SENT</td></tr>';
+                document.getElementById("mailLog").innerHTML += '<tr><td>'+ EmailCount +'</td><td>'+ mailId +'</td><td style="color: #45d56d;"><i class="fas fa-check"></i> SENT</td></tr>';
                 document.getElementById("seccessEmails").innerHTML = "Success:" + Success;
                 document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width:960px; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
                 Success++;
+                EmailCount++;
             }else{
-                //sessionStorage.setItem("bearer", "undefined");
-                document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Failed</td></tr>';
+                document.getElementById("mailLog").innerHTML += '<tr><td>'+ EmailCount +'</td><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Failed</td></tr>';
                 document.getElementById("failedEmails").innerHTML = "Failed:" + failed;
                 document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width:960px; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
                 failed++;
-                //startOAuthFlow(event["clientId"], event["redirect_uri"]);
+                EmailCount++;
             }
         }).catch(error => {
-         document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Error</td></tr>';
+        document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Error</td></tr>';
+        console.log(EmailCount + ":- " + error.message);
     });
 }
     
