@@ -227,12 +227,6 @@
         <div class="row">
             <div class="col-md-12" id="send-emails-btn-row">
                 <h5 style="color: white; font-weight: bold;">Sending Log</h5>
-                <table class="styled-table">
-                    <tr>
-                      <th id="table-head">Email Address</th>
-                      <th id="table-head">Status</th>
-                    </tr>
-                </table>
                 <div id="SuccessLog">
                     <table class="styled-table" id="mailLog"></table>
                 </div>
@@ -357,7 +351,7 @@
                 var text = document.getElementById('email-list').value;
                 var lineCount = (text.match(/\n/g) || []).length + 1;
                 document.getElementById('lineCount').innerText = 'Number of Lines: ' + lineCount;
-                var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio)\b/g;
+                var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|au)\b/g;
                 // Find all matches of valid email patterns in the textarea
                 var validEmails = text.match(emailRegex);
 
