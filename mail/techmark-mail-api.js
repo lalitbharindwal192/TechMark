@@ -8,9 +8,10 @@ function flow(event){
     if(bearer == null || bearer == "undefined"){
         const authorizationCode = extractCodeFromUrl();
         if (authorizationCode) {
-            authenticate_code(authorizationCode, event)
+            authenticate_code(authorizationCode, event);
         }else{
-            startOAuthFlow(event["clientId"], event["redirect_uri"])
+            alert("Authenticate Account "+event["email"]);
+            startOAuthFlow(event["clientId"], event["redirect_uri"]);
         }
     }else{
         getProfile(decodeURIComponent(escape(atob(bearer))), event)
@@ -61,7 +62,7 @@ function getProfile(token, event){
           }
           return response.json();
         }).then(data => {
-            if(data["emailAddress"] == sessionStorage.getItem("emailid")){
+            if(data["emailAddress"] == event["email"]){
                 sessionStorage.setItem("bearer", btoa(unescape(encodeURIComponent(token))))
             }else{
                 sessionStorage.setItem("bearer", "undefined")

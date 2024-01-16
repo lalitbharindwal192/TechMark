@@ -1,0 +1,27 @@
+<script>
+// Set a secure cookie with an expiration time (e.g., expires in 1 day)
+const expirationDate = new Date();
+expirationDate.setDate(expirationDate.getDate() + 1);
+
+// To set a secure cookie, use the 'secure' and 'SameSite' attributes
+document.cookie = 'mySecureCookie=myValue; expires=' + expirationDate.toUTCString() + '; secure; SameSite=None; Secure';
+
+// Assume 'mySecureCookie' is the name of your secure cookie
+const cookies = document.cookie;
+
+// Split the cookies string into an array of individual cookies
+const cookieArray = cookies.split('; ');
+
+// Find the specific cookie you are looking for (e.g., 'mySecureCookie')
+const mySecureCookie = cookieArray.find(cookie => cookie.startsWith('mySecureCookie='));
+
+// Check if the cookie is found
+if (mySecureCookie !== undefined) {
+  // Extract the value of the secure cookie
+  const cookieValue = mySecureCookie.split('=')[1];
+  console.log('Value of mySecureCookie:', cookieValue);
+} else {
+  console.log('mySecureCookie not found.');
+}
+
+</script>
