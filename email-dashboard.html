@@ -228,7 +228,12 @@
             <div class="col-md-12" id="send-emails-btn-row">
                 <h5 style="color: white; font-weight: bold;">Sending Log</h5>
                 <div id="SuccessLog">
-                    <table class="styled-table" id="mailLog"></table>
+                    <table class="styled-table" id="mailLog">
+                        <tr>
+                            <th>Email Address</th>
+                            <th>Sending Status</th>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -532,8 +537,6 @@ ${htmlContent}
             overflow-y: scroll; /* Enable vertical scrolling */
             border: 1px solid #ccc;
             background-color: white;
-            display: flex;
-            flex-direction: column-reverse;
             color: #000000;
             font-weight: bold;
             opacity: 0.8;
