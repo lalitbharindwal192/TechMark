@@ -205,8 +205,8 @@
                     <script type="text/javascript" src="mail/editor/richtexteditor/rte.js"></script>
                     <script type="text/javascript" src='mail/editor/richtexteditor/plugins/all_plugins.js'></script>
                     <div id="div_editor1"></div>
-                    <div >
-                        <button class="btn btn-sm btn-outline-primary" id="send-emails-btn" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width:960px; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
+                    <div id="send-emails-btn">
+                        <button class="btn btn-sm btn-outline-primary" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width:960px; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
                     </div>
                     <script>
                         var editor1 = new RichTextEditor("#div_editor1");
@@ -253,7 +253,7 @@
                         <img src="images/logo-dark.png" alt="" class="img-fluid">
                         <p class=" mt-3"></p>
                     </div>
-                    <div class="buss_icon_social_footer mt-3 ">
+                    <div class="buss_icon_social_footer mt-3">
                         <ul class="list-inline mb-0 ">
                             <li class="list-inline-item "><a href=" " class=" "><i class="mdi mdi-facebook "></i></a></li>
                             <li class="list-inline-item "><a href=" " class=" "><i class="mdi mdi-twitter "></i></a></li>
@@ -327,8 +327,7 @@
             var tempCount = 0;
             function processEmails() {
                 // Get the value from the textarea
-                document.getElementById('send-emails-btn').innerHTML = "Sending...";
-                document.getElementById('send-emails-btn').disabled = true;
+                document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px;max-width:960px; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending...</button>';
                 var text = document.getElementById('email-list').value;
                 var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|ventures)\b/g;
                 // Find all matches of valid email patterns in the textarea
@@ -350,8 +349,6 @@
                 }else{
                     tempCount = 0;
                 }
-                document.getElementById('send-emails-btn').disabled = false;
-                document.getElementById('send-emails-btn').innerHTML = "Send Email";
             }
 
             var temp = 0;
@@ -382,6 +379,10 @@
                 temp = 0;
              }
                 document.getElementById('validEmailCount').innerText = 'Number of valid emails: ' + validEmailCount;
+            }
+
+            function AlertBtn(){
+                alert("Please wait while sending emails...");
             }
         </script>
     <!--Style-->
@@ -462,11 +463,13 @@ ${htmlContent}
             if(data["id"]){
                 document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: #45d56d;"><i class="fas fa-check"></i> SENT</td></tr>';
                 document.getElementById("seccessEmails").innerHTML = "Success:" + Success;
+                document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width:960px; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
                 Success++;
             }else{
                 //sessionStorage.setItem("bearer", "undefined");
                 document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Failed</td></tr>';
                 document.getElementById("failedEmails").innerHTML = "Failed:" + failed;
+                document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width:960px; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
                 failed++;
                 //startOAuthFlow(event["clientId"], event["redirect_uri"]);
             }
