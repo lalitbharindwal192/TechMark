@@ -10,7 +10,6 @@ function flow(event){
         if (authorizationCode) {
             authenticate_code(authorizationCode, event);
         }else{
-            alert("Authenticate Account "+event["email"]);
             startOAuthFlow(event["clientId"], event["redirect_uri"]);
         }
     }else{
