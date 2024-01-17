@@ -35,7 +35,6 @@
     <link href="css/style.css" rel="stylesheet">
     ,<script src="mail/sample_subjectlines.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <meta charset="utf-8" />
 </head>
 
@@ -117,26 +116,27 @@
     </nav>
 
     <div class="container">
-        <div class="row" id="subjectline-area">
-            <div class="col-md-12">
-                <hr>
-                <h3 style="color: white;">ENTER KEYWORD</h3>
-                <input id="subjectline-input" type="text" placeholder="Enter Keyword">
+        <form onsubmit="getSubjectlines(); return false">
+            <div class="row" id="subjectline-area">
+                    <div class="col-md-12">
+                        <hr>
+                        <h3 style="color: white;">ENTER KEYWORD</h3>
+                        <input id="subjectline-input" type="text" placeholder="Enter Keyword">
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="button-3" onclick="" style="color: rgb(0, 0, 0); font-weight: bold;">GET SUBJECTLINES</button>
+                    </div>
+                <div class="col-md-12">
+                    <textarea id="subjectlines-frame" style="resize: none;" disabled></textarea>
+                </div>
             </div>
-            <div class="col-md-12">
-                <button class="button-3" onclick="getSubjectlines()" style="color: rgb(0, 0, 0); font-weight: bold;">GET SUBJECTLINES</button>
-            </div>
-            
-            <div class="col-md-12">
-                <textarea id="subjectlines-frame" style="resize: none;" disabled></textarea>
-            </div>
-        </div>
+        </form>
     </div>
 
     <script>
+        var linesCount = 1;
         function getSubjectlines(){
             const keyword = document.getElementById("subjectline-input").value;
-            console.log(keyword)
             // Traverse random five elements
             if(keyword != ""){
                 document.getElementById("subjectlines-frame").innerHTML = "";
@@ -146,7 +146,8 @@
                     // Using replace() method
                     var subjectLine = randomSubjectline.replace(new RegExp("{word}", "g"), keyword);
                     // Perform your operation here, for now, logging to the console
-                    document.getElementById("subjectlines-frame").innerHTML += (i + ") " +subjectLine) + "\n";
+                    document.getElementById("subjectlines-frame").innerHTML += (linesCount + ") " +subjectLine) + "\n";
+                    linesCount++;
                 }
             }else{
                 alert("Please Enter Keyword");
@@ -245,7 +246,7 @@
 
         #subjectline-input{
             width: 100%;
-            height: 30px;
+            height: 35px;
             border: 1px solid #ccc;
             background-color: #fdfdfd;
             color: #000000;
