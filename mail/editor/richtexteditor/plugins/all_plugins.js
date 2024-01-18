@@ -1025,7 +1025,7 @@ function RTE_Plugin_InsertTemplate() {
         function CreateDiv(item) {
             var text = item[0];
             var html = item[1];
-            console.log(item, text, html);
+            //console.log(item, text, html);
 
             var divitem = __Append(container, "rte-inserttemplate-image-item", "cursor:pointer;width:256px;height:256px;margin:12px;box-shadow:0 0 8px #ccc;display:flex;align-items:center;justify-content:center;")
             var div = __Append(divitem, "div", "max-width:90%;max-height:90%;overflow:auto;");

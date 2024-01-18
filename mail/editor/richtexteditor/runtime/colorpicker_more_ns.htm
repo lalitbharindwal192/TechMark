@@ -131,7 +131,7 @@
 			if (color.substring(0, 1) != "#") return;
 			var hex = color.substring(1, 7);
 			var recent = GetCookie("RecentColors");
-			console.log("load recent", recent);
+			//console.log("load recent", recent);
 			if (!recent) recent = "";
 			if ((recent.length % 6) != 0) recent = "";
 			for (var i = 0; i < recent.length; i += 6) {
