@@ -392,27 +392,10 @@
 
 <!--Mails-->
 <script>
-function textToHTML(text) {
-// Replace line breaks with <br> tags
-const lines = text.split('\n').map(line => line ? `<div>${line}</div>` : '<div>&nbsp;</div>').join('');
-return `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>HTML Content from Plain Text</title>
-</head>
-<body>
-${lines}
-</body>
-</html>`;
-}
-
 var Success = 1;
 var failed = 1;
 var EmailCount = 1;
 function sendMail(mailId){
-                
 const htmlContent = editor1.getHTMLCode();
               
 const raw = 
@@ -482,7 +465,6 @@ ${htmlContent}
         console.log(EmailCount + ":- " + error.message);
     });
 }
-    
     </script>
 
     <!--Mails-->
