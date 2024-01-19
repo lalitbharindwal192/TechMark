@@ -403,7 +403,7 @@ const raw =
 To: ${mailId}      
 Subject: ${document.getElementById("subject").value}
 MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="techmark-mail-boundary"
+Content-Type: multipart/mixed; boundary="techmark-mail-boundary"
 
 --techmark-mail-boundary
 Content-Type: text/plain; charset="UTF-8"
@@ -432,7 +432,7 @@ ${htmlContent}
     };
     
     //const token = sessionStorage.getItem("bearer");
-    fetch('https://gmail.googleapis.com/upload/gmail/v1/users/'+ sessionStorage.getItem("emailid")+ '/messages/send', {
+    fetch('https://gmail.googleapis.com/gmail/v1/users/'+ sessionStorage.getItem("emailid")+ '/messages/send', {
          method: 'POST', // Change the method accordingly (POST, PUT, etc.)
          headers: {
             'Authorization': `Bearer ${decodeURIComponent(escape(atob(sessionStorage.getItem("bearer"))))}`,
