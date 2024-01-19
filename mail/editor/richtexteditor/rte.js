@@ -1,5 +1,7 @@
 
-const template1 = `<head>
+const template1 = `
+<html>
+<head>
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet" type="text/css"/>
 <style>
@@ -693,45 +695,7 @@ const template1 = `<head>
 </tbody>
 </table>
 </body>
-</html>`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</html>`;
 
 //
 if (!window.RTE_DefaultConfig)
@@ -913,7 +877,7 @@ RTE_DefaultConfig.imageItems = ["http://richtexteditor.com/uploads/1.jpg", "http
 RTE_DefaultConfig.galleryImages = ["http://richtexteditor.com/uploads/1.jpg", "http://richtexteditor.com/uploads/2.jpg", "http://richtexteditor.com/uploads/3.jpg", "http://richtexteditor.com/uploads/4.jpg", "http://richtexteditor.com/uploads/5.jpg", "http://richtexteditor.com/uploads/6.jpg"];
 // Default images for gallery Images dialog. 
 
-RTE_DefaultConfig.htmlTemplates = [["My Doc 1", "<h2>MyTitleMyTitleMyTitleMyTitleMyTitleMyTitleMyTitle</h2><p>Paragraph 1 </p><p>Paragraph 2 </p><p>Paragraph 3 </p><p>Paragraph 4 </p><p>Paragraph 5 </p>"], ["My Doc 1", "<h2>MyTitleMyTitleMyTitle</h2><p>Paragraph 1 </p><p>Paragraph 2 </p><p>Paragraph 3 </p><p>Paragraph 4 </p><p>Paragraph 5 </p>"], ["template1", template1]];
+RTE_DefaultConfig.htmlTemplates = [["template1", template1]];
 // Default html Templates for html Templates dialog. 
 
 RTE_DefaultConfig.inlineStyles = [["Red", "color:red", "color:red"], ["Bold", "font-weight:bold", "font-weight:bold"], ["Mark", "my-cls-mark"], ["Warning", "my-cls-warning"]];
@@ -1295,7 +1259,7 @@ RTE_DefaultConfig.text_copied = "copied";
 
 RTE_DefaultConfig.text_insertgallery = "Insert Gallery";
 RTE_DefaultConfig.text_insertdocument = "Insert Document";
-RTE_DefaultConfig.text_inserttemplate = "Insert Template";
+RTE_DefaultConfig.text_inserttemplate = "TechMark Email Templates";
 
 RTE_DefaultConfig.text_previewtitle = "Preview";
 RTE_DefaultConfig.text_previewnormal = "Normal";

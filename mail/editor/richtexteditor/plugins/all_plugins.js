@@ -1027,11 +1027,14 @@ function RTE_Plugin_InsertTemplate() {
             var html = item[1];
             //console.log(item, text, html);
 
-            var divitem = __Append(container, "rte-inserttemplate-image-item", "cursor:pointer;width:256px;height:256px;margin:12px;box-shadow:0 0 8px #ccc;display:flex;align-items:center;justify-content:center;")
-            var div = __Append(divitem, "div", "max-width:90%;max-height:90%;overflow:auto;");
+            var divitem = __Append(container, "rte-inserttemplate-image-item", "cursor:pointer;width:956px;height:50px;margin:12px;box-shadow:0 0 8px #ccc;display:flex;align-items:center;justify-content:center;");
+			var div = __Append(divitem, "div", "max-width:90%;max-height:90%;overflow:auto;");
+			var div2 = __Append(divitem, "div", "max-width:90%;max-height:90%;overflow:auto;");
             var innerdiv = __Append(div, "div");
+			var innerdiv2 = __Append(div2, "div");
             innerdiv.innerHTML = html;
-            div.title = text;
+			innerdiv2.innerHTML = text;
+            //div.title = text;
 
             var scale = Math.min(200 / div.scrollWidth, 200 / div.scrollHeight);
             if (scale < 1) {
