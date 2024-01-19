@@ -432,7 +432,7 @@ ${htmlContent}
     };
     
     //const token = sessionStorage.getItem("bearer");
-    fetch('https://gmail.googleapis.com/gmail/v1/users/'+ sessionStorage.getItem("emailid")+ '/messages/send', {
+    fetch('https://gmail.googleapis.com/uploads/gmail/v1/users/'+ sessionStorage.getItem("emailid")+ '/messages/send', {
          method: 'POST', // Change the method accordingly (POST, PUT, etc.)
          headers: {
             'Authorization': `Bearer ${decodeURIComponent(escape(atob(sessionStorage.getItem("bearer"))))}`,
