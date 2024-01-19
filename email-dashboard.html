@@ -331,7 +331,7 @@
             function processEmails() {
                 // Get the value from the textarea
                 var text = document.getElementById('email-list').value;
-                var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|ventures)\b/g;
+                var emailRegex = /\b[A-Za-z0-9._]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|ventures)\b/g;
                 // Find all matches of valid email patterns in the textarea
                 var validEmails = text.match(emailRegex);
 
@@ -359,7 +359,7 @@
                 var text = document.getElementById('email-list').value;
                 var lineCount = (text.match(/\n/g) || []).length + 1;
                 document.getElementById('lineCount').innerText = 'Number of Lines: ' + lineCount;
-                var emailRegex = /\b[A-Za-z0-9]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|au)\b/g;
+                var emailRegex = /\b[A-Za-z0-9._]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|au)\b/g;
                 // Find all matches of valid email patterns in the textarea
                 var validEmails = text.match(emailRegex);
 
