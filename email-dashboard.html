@@ -403,7 +403,7 @@ const raw =
 To: ${mailId}      
 Subject: ${document.getElementById("subject").value}
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="techmark-mail-boundary"
+Content-Type: multipart/alternative; boundary="techmark-mail-boundary"
 
 --techmark-mail-boundary
 Content-Type: text/plain; charset="UTF-8"
@@ -447,7 +447,6 @@ ${htmlContent}
          return response.json();
         }).then(data => {
             if(data["id"]){
-                console.log(data)
                 document.getElementById("mailLog").innerHTML += '<tr><td>'+ EmailCount +'</td><td>'+ mailId +'</td><td style="color: #45d56d;"><i class="fas fa-check"></i> SENT</td></tr>';
                 document.getElementById("seccessEmails").innerHTML = "Success:" + Success;
                 document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width:960px; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
