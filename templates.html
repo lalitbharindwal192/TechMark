@@ -82,7 +82,7 @@
             <div class="row" data-aos="fade-up">
                 <div class="col-lg-12">
                     <div class="text-center text-white">
-                        <h2 class="font-weight-bold">Email Subjectlines</h2>
+                        <h2 class="font-weight-bold">Email Templates</h2>
                     </div>
                 </div>
             </div>
@@ -116,51 +116,42 @@
           </div>
         </div>
     </nav>
-
-    <div class="container">
-        <form onsubmit="getSubjectlines(); return false">
-            <div class="row" id="subjectline-area">
-                    <div class="col-md-12">
-                        <hr>
-                        <h3 style="color: white;">ENTER KEYWORD</h3>
-                        <input id="subjectline-input" type="text" placeholder="Enter Keyword">
-                    </div>
-                    <div class="col-md-12">
-                        <button type="submit" class="button-3" onclick="" style="color: rgb(0, 0, 0); font-weight: bold;">GET SUBJECTLINES</button>
-                    </div>
-                <div class="col-md-12">
-                    <textarea id="subjectlines-frame" style="resize: none;" disabled></textarea>
-                </div>
+    <script type="text/javascript" src="https://techmark192.github.io/templates/templates.js"></script>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="temps" id="temp1"></div>
+                <button onclick="temp1()">Use</button>
             </div>
-        </form>
+            <div class="col-md-6">
+                <div class="temps" id="temp2"></div>
+                <button onclick="temp2()">Use</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        var linesCount = 1;
-        function getSubjectlines(){
-            const keyword = document.getElementById("subjectline-input").value;
-            // Traverse random five elements
-            if(keyword != ""){
-                document.getElementById("subjectlines-frame").innerHTML = "";
-                for (var i = 1; i <= 10; i++) {
-                    var randomIndex = getRandomIndex(subjectLines);
-                    var randomSubjectline = subjectLines[randomIndex];
-                    // Using replace() method
-                    var subjectLine = randomSubjectline.replace(new RegExp("{word}", "g"), keyword);
-                    // Perform your operation here, for now, logging to the console
-                    document.getElementById("subjectlines-frame").innerHTML += (linesCount + ") " +subjectLine) + "\n";
-                    linesCount++;
-                }
-            }else{
-                alert("Please Enter Keyword");
-            }
-        }        
+        document.getElementById("temp1").innerHTML = template1;
+        document.getElementById("temp2").innerHTML = template2;
 
-        // Function to get a random index within the array length
-        function getRandomIndex(array) {
-            return Math.floor(Math.random() * array.length);
+        function temp1(){
+            sessionStorage.setItem("templateId", template1);
+            location = "email-dashboard.html";
+        }
+
+        function temp2(){
+            sessionStorage.setItem("templateId", template2);
+            location = "email-dashboard.html";
         }
     </script>
+
+    <style>
+        .temps{
+            overflow-y: auto;
+            height: 15cm;
+        }
+        
+    </style>
 
     <!-- Footer Start -->
     <section class="section_all bg_footer">
@@ -237,97 +228,6 @@
         </div>
     </section>
     <!-- Footer end -->
-    
-    <style>
-        body{
-            background-color: #474747;
-            background-image: url('images/email-bg.jpg');
-            background-size: 100% 100%;
-            background-size: cover;
-        }
-
-        #subjectline-input{
-            width: 100%;
-            height: 35px;
-            border: 1px solid #ccc;
-            background-color: #fdfdfd;
-            color: #000000;
-            font-weight: bold;
-            font-size: 25px;
-            opacity: 0.8;
-        }
-
-        #subjectlines-frame {
-            height: 500px; /* Set the height to create a scrollable area */
-            width: 100%;
-            overflow-y: scroll; /* Enable vertical scrolling */
-            border: 1px solid #ccc;
-            background-color: white;
-            color: #000000;
-            font-weight: bold;
-            font-size: 25px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            opacity: 0.8;
-            }
-
-        #subjectline-area{
-            text-align: center;
-        }
-
-        /* CSS */
-        .button-3 {
-        appearance: none;
-        background-color: #2ea44f;
-        border: 1px solid rgba(27, 31, 35, .15);
-        border-radius: 6px;
-        box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
-        box-sizing: border-box;
-        color: #fff;
-        cursor: pointer;
-        display: inline-block;
-        font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 20px;
-        padding: 6px 16px;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        vertical-align: middle;
-        white-space: nowrap;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        }
-
-        .button-3:focus:not(:focus-visible):not(.focus-visible) {
-        box-shadow: none;
-        outline: none;
-        }
-
-        .button-3:hover {
-        background-color: #2c974b;
-        }
-
-        .button-3:focus {
-        box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
-        outline: none;
-        }
-
-        .button-3:disabled {
-        background-color: #94d3a2;
-        border-color: rgba(27, 31, 35, .1);
-        color: rgba(255, 255, 255, .8);
-        cursor: default;
-        }
-
-        .button-3:active {
-        background-color: #298e46;
-        box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
-        }
-    </style>
     
     <!-- JAVASCRIPTS -->
     <script src="js/popper.min.js"></script>
