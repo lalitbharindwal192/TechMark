@@ -119,15 +119,19 @@
     <script type="text/javascript" src="https://techmark192.github.io/templates/templates.js"></script>
     <div class="container-fluid">
         <div class="row">
+            <div class="col-md-12"><hr><h1 id="heading">Awesome Templates</h1><hr></div>
             <div class="col-md-6">
-                <div class="temps" id="temp1"></div>
-                <button onclick="temp1()">Use</button>
+                <div class="temps" id="temp1" onclick="temp1()"></div>
+                <br>
             </div>
+            
             <div class="col-md-6">
-                <div class="temps" id="temp2"></div>
-                <button onclick="temp2()">Use</button>
+                <div class="temps" id="temp2" onclick="temp2()"></div>
+                <br>
             </div>
         </div>
+        <br>
+        <hr>
     </div>
 
     <script>
@@ -146,11 +150,17 @@
     </script>
 
     <style>
+        #heading{
+            text-align: center;
+            font-variant: small-caps;
+            font-weight: bold;
+            color: #45d56d;
+        }
+
         .temps{
             overflow-y: auto;
             height: 15cm;
         }
-        
     </style>
 
     <!-- Footer Start -->
