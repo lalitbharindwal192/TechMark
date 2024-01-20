@@ -138,77 +138,22 @@
 
     <script type="text/javascript" src="https://techmark192.github.io/templates/templates.js"></script>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" id="templates">
             <div class="col-md-12"><hr><h1 id="heading">Awesome Templates</h1><hr></div>
-            <div class="col-md-6">
-                <div class="temps" id="temp1" onclick="temp1()"></div>
-                <br>
-            </div>
-            
-            <div class="col-md-6">
-                <div class="temps" id="temp2" onclick="temp2()"></div>
-                <br>
-            </div>
-
-            <div class="col-md-6">
-                <div class="temps" id="temp3" onclick="temp3()"></div>
-                <br>
-            </div>
-
-            <div class="col-md-6">
-                <div class="temps" id="temp4" onclick="temp4()"></div>
-                <br>
-            </div>
-
-            <div class="col-md-6">
-                <div class="temps" id="temp5" onclick="temp5()"></div>
-                <br>
-            </div>
-
-            <div class="col-md-6">
-                <div class="temps" id="temp6" onclick="temp6()"></div>
-                <br>
-            </div>
         </div>
         <br>
         <hr>
     </div>
 
     <script>
-        document.getElementById("temp1").innerHTML = template1;
-        document.getElementById("temp2").innerHTML = template2;
-        document.getElementById("temp3").innerHTML = template3;
-        document.getElementById("temp4").innerHTML = template4;
-        document.getElementById("temp5").innerHTML = template5;
-        document.getElementById("temp6").innerHTML = template6;
-
-        function temp1(){
-            sessionStorage.setItem("templateId", template1);
-            location = "email-dashboard.html";
+        const templates = [template1, template2, template3, template4, template5, template6]
+        for(var i = 0;i<templates.length;i++){
+            document.getElementById("templates").innerHTML += `<div class="col-md-4"><div class="temps" id="temp-${i}" onclick="temp(this)">${templates[i]}</div><br></div>`;
         }
 
-        function temp2(){
-            sessionStorage.setItem("templateId", template2);
-            location = "email-dashboard.html";
-        }
-
-        function temp3(){
-            sessionStorage.setItem("templateId", template3);
-            location = "email-dashboard.html";
-        }
-
-        function temp4(){
-            sessionStorage.setItem("templateId", template4);
-            location = "email-dashboard.html";
-        }
-
-        function temp5(){
-            sessionStorage.setItem("templateId", template5);
-            location = "email-dashboard.html";
-        }
-
-        function temp6(){
-            sessionStorage.setItem("templateId", template6);
+        function temp(obj){
+            var number = obj.id;
+            sessionStorage.setItem("templateId", templates[number.split("-")[1]]);
             location = "email-dashboard.html";
         }
     </script>
