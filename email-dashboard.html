@@ -210,29 +210,53 @@
                     <link rel="stylesheet" href="mail/editor/richtexteditor/rte_theme_default.css" />
                     <script type="text/javascript" src="mail/editor/richtexteditor/rte.js"></script>
                     <script type="text/javascript" src='mail/editor/richtexteditor/plugins/all_plugins.js'></script>
-                    <div id="div_editor1"></div>
+                    <div id="div_editor1">Greetings From TechMark</div>
                     <div id="send-emails-btn">
                         <button class="btn btn-sm btn-outline-primary" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width:960px; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
                     </div>
                     <script>
-                        var editor1 = new RichTextEditor("#div_editor1");
+                        var editor1 = new RichTextEditor("#div_editor1", { skin: "green", toolbar: "default" });
                         if(sessionStorage.getItem("templateId") != null && sessionStorage.getItem("templateId") != "null"){
                             editor1.setHTMLCode(sessionStorage.getItem("templateId"));
                             sessionStorage.setItem("templateId", null);
                         }
+                        editor1.setHTMLCode(`<div style="text-align: center;"><img src="https://techmarkapp.netlify.app/images/logo-dark.png" style="height: 50px;"/><br/></div>`);
+                        
                     </script>
+    <style>
+        #div_editor1 {
+            background-color: #c8ffd7 !important;
+            border-color: #c8ffd7 !important;
+            height: 16cm;
+        }
+
+        #div_editor1 rte-toolbar {
+			background-color:#c8ffd7 !important;
+		}
+
+		#div_editor1 rte-bottom {
+			background-color: #45d56d !important;
+		}
+
+		#div_editor1 rte-dialog-inner {
+			background-color: #ffffff !important;
+		}
+
+		#div_editor1 rte-line-spliter {
+			background-color: #c8ffd7 !important;
+		}
+
+		#div_editor1 rte-dialog-header {
+            background-color: #45d56d;
+		}
+    </style>
+                    </style>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        function editor(){
-            document.getElementById("preview").innerHTML = editor1.getHTMLCode();
-        }
-    </script>
-        
     <div class="container">
         <div class="row">
             <div class="col-md-12" id="send-emails-btn-row">
