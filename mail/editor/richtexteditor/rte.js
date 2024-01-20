@@ -120,7 +120,7 @@ RTE_DefaultConfig.insertOrderedListItems = [["decimal", "1,2,3,4,5"], ["lower-al
 
 RTE_DefaultConfig.insertUnorderedListItems = [["disc", "Disc"], ["circle", "Circle"], ["square", "Square"]];
 
-RTE_DefaultConfig.fontSizeItems = "8,9,10,11,12,13,14,16,18,24,36,48,60,72,96";
+RTE_DefaultConfig.fontSizeItems = "8,10,12,14,16,18,20,22,24,26,28,30,32,48,60,72";
 // A predefined set of font sizes.
 RTE_DefaultConfig.fontNameItems = "Arial,Arial Black,Comic Sans MS,Courier New,Tahoma,Georgia,Helvetica, Segoe UI,Sans-Serif,Impact,Times New Roman,Verdana";
 // A predefined set of font names.
@@ -177,7 +177,7 @@ RTE_DefaultConfig.imageItems = ["http://richtexteditor.com/uploads/1.jpg", "http
 RTE_DefaultConfig.galleryImages = ["http://richtexteditor.com/uploads/1.jpg", "http://richtexteditor.com/uploads/2.jpg", "http://richtexteditor.com/uploads/3.jpg", "http://richtexteditor.com/uploads/4.jpg", "http://richtexteditor.com/uploads/5.jpg", "http://richtexteditor.com/uploads/6.jpg"];
 // Default images for gallery Images dialog. 
 
-RTE_DefaultConfig.htmlTemplates = [["template1", template1], ["template2", template2]];
+RTE_DefaultConfig.htmlTemplates = [["template1", template1], ["template2", template2], ["template3", template3], ["template4", template4], ["template5", template5], ["template6", template6]];
 // Default html Templates for html Templates dialog.
 
 RTE_DefaultConfig.inlineStyles = [["Red", "color:red", "color:red"], ["Bold", "font-weight:bold", "font-weight:bold"], ["Mark", "my-cls-mark"], ["Warning", "my-cls-warning"]];
