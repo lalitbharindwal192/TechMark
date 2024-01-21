@@ -75,7 +75,7 @@ RTE_DefaultConfig.tagBlackList = [];
 
 RTE_DefaultConfig.tabSpaces = 4;
 //Gets or sets the number of spaces to be inserted when the user hits the "tab" key.
-RTE_DefaultConfig.enterKeyTag = "p"
+RTE_DefaultConfig.enterKeyTag = "br"
 // Determines what happens when the "enter" key is pressed in the editor. div, p or br.
 
 RTE_DefaultConfig.pasteMode = "Auto";
@@ -189,9 +189,9 @@ RTE_DefaultConfig.imageStyles = [["Border", "border: 1px solid #ddd; border-radi
 RTE_DefaultConfig.linkStyles = [["Margin10", "margin:10px"], ["Padding:10", "padding:10px"], ["BigText", "font-size:36px"]];
 // Default CSS styles for link Styles dropdown. 
 
-RTE_DefaultConfig.toolbar_default = "{bold,italic,underline,forecolor,backcolor}|{justifyleft,justifycenter,justifyright,justifyfull}|{insertorderedlist,insertunorderedlist,indent,outdent,insertblockquote,insertemoji}" + " #{paragraphs:toggle,fontname:toggle,fontsize:toggle,inlinestyle,lineheight}" + " / {removeformat,cut,copy,paste,delete,find}|{insertlink,insertchars,inserttable,insertvideo,insertdocument,inserttemplate,insertcode}|{preview,code,selectall}" + "#{toggleborder,fullscreenenter,fullscreenexit,undo,redo,togglemore}";
+RTE_DefaultConfig.toolbar_default = "{bold,italic,underline,forecolor,backcolor}|{justifyleft,justifycenter,justifyright,justifyfull}|{insertorderedlist,insertunorderedlist,indent,outdent,insertblockquote,insertemoji}" + " #{paragraphs:toggle,fontname:toggle,fontsize:toggle,inlinestyle,lineheight}" + " / {removeformat,cut,copy,paste,delete,find}|{insertlink,insertchars,inserttable,insertdocument,inserttemplate,insertcode}|{preview,code,selectall}" + "#{toggleborder,fullscreenenter,fullscreenexit,undo,redo,togglemore}";
 // Default set of buttons that appears in the rich text editor's toolbar on desktop.
-//insertimage for images add
+//insertimage for images add insertvideo for videos
 RTE_DefaultConfig.toolbar_mobile = "{bold,italic,underline|fontname:toggle,fontsize:toggle,menu_paragraphop|forecolor,backcolor}" + "{insertlink,insertemoji,inserttable,removeformat}" + "#{toggleborder,fullscreenenter,fullscreenexit,undo,redo,togglemore}";
 // Default set of buttons that appears in the rich text editor's toolbar on mobile.
 
