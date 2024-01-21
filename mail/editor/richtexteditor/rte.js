@@ -75,7 +75,7 @@ RTE_DefaultConfig.tagBlackList = [];
 
 RTE_DefaultConfig.tabSpaces = 4;
 //Gets or sets the number of spaces to be inserted when the user hits the "tab" key.
-RTE_DefaultConfig.enterKeyTag = "br"
+RTE_DefaultConfig.enterKeyTag = "p"
 // Determines what happens when the "enter" key is pressed in the editor. div, p or br.
 
 RTE_DefaultConfig.pasteMode = "Auto";
