@@ -234,7 +234,7 @@ RTE_DefaultConfig.subtoolbar_controljustify = "justifyleft,justifycenter,justify
 RTE_DefaultConfig.subtoolbar_floatparagraph = "pmoveup,pmovedown,pduplicate,pdelete,pmore";
 // The default tool buttons of floatparagraph.
 
-RTE_DefaultConfig.controltoolbar_TEXT = "removeformat | {bold,italic,underline,forecolor,backcolor}|{fontname:toggle,fontsize:toggle}|{insertlink}"
+RTE_DefaultConfig.controltoolbar_TEXT = "removeformat | {bold,italic,menu_paragraphop,underline,forecolor,backcolor}|{fontname:toggle,fontsize:toggle}|{insertlink}"
 // A set of buttons that appears in the text selection float toolbar.
 //"removeformat | {bold,italic,underline,forecolor,backcolor}|{fontname:toggle,fontsize:toggle}|{insertlink,insertanchor}"
 RTE_DefaultConfig.controltoolbar_A = "{linkstyle,insertlink,unlink}";
