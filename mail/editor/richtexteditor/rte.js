@@ -189,10 +189,10 @@ RTE_DefaultConfig.imageStyles = [["Border", "border: 1px solid #ddd; border-radi
 RTE_DefaultConfig.linkStyles = [["Margin10", "margin:10px"], ["Padding:10", "padding:10px"], ["BigText", "font-size:36px"]];
 // Default CSS styles for link Styles dropdown. 
 
-RTE_DefaultConfig.toolbar_default = "{bold,italic,underline,forecolor,backcolor}|{justifyleft,justifycenter,justifyright,justifyfull}|{insertorderedlist,insertunorderedlist,indent,outdent,insertblockquote,insertemoji}" + " #{paragraphs:toggle,fontname:toggle,fontsize:toggle,inlinestyle,lineheight}" + " / {removeformat,cut,copy,paste,delete,find}|{insertlink,insertchars,inserttable,insertimage,insertvideo,insertdocument,inserttemplate,insertcode}|{preview,code,selectall}" + "#{toggleborder,fullscreenenter,fullscreenexit,undo,redo,togglemore}";
+RTE_DefaultConfig.toolbar_default = "{bold,italic,underline,forecolor,backcolor}|{justifyleft,justifycenter,justifyright,justifyfull}|{insertorderedlist,insertunorderedlist,indent,outdent,insertblockquote,insertemoji}" + " #{paragraphs:toggle,fontname:toggle,fontsize:toggle,inlinestyle,lineheight}" + " / {removeformat,cut,copy,paste,delete,find}|{insertlink,insertchars,inserttable,insertvideo,insertdocument,inserttemplate,insertcode}|{preview,code,selectall}" + "#{toggleborder,fullscreenenter,fullscreenexit,undo,redo,togglemore}";
 // Default set of buttons that appears in the rich text editor's toolbar on desktop.
-
-RTE_DefaultConfig.toolbar_mobile = "{bold,italic,underline|fontname:toggle,fontsize:toggle,menu_paragraphop|forecolor,backcolor}" + "{insertlink,insertemoji,inserttable,insertimage,removeformat}" + "#{toggleborder,fullscreenenter,fullscreenexit,undo,redo,togglemore}";
+//insertimage for images add
+RTE_DefaultConfig.toolbar_mobile = "{bold,italic,underline|fontname:toggle,fontsize:toggle,menu_paragraphop|forecolor,backcolor}" + "{insertlink,insertemoji,inserttable,removeformat}" + "#{toggleborder,fullscreenenter,fullscreenexit,undo,redo,togglemore}";
 // Default set of buttons that appears in the rich text editor's toolbar on mobile.
 
 RTE_DefaultConfig.toolbar_basic = "{bold,italic,underline}|{fontname,fontsize}|{insertlink,insertemoji,insertimage,insertvideo}|removeformat|code" + "#{toggleborder,fullscreenenter,fullscreenexit,undo,redo,togglemore}";
