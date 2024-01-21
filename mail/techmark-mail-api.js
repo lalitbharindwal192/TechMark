@@ -72,10 +72,7 @@ function getProfile(token, event){
     });
 }
 
-
 //Sending Script
-document.getElementById("email-from").innerHTML = '<input class="email-input" value="'+ sessionStorage.getItem("emailid") +'" disabled>';
-var Log = true;
 var tempCount = 0;
 function processEmails() {
     // Get the value from the textarea

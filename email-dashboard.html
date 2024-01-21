@@ -68,8 +68,8 @@
             <div class="container">
                 <!-- LOGO -->
                 <a class='navbar-brand logo' href='index.html'>
-                    <img src="images/logo-2.png" alt="" class="img-fluid logo-light">
-                    <img src="images/logo-dark.png" alt="" class="img-fluid logo-dark">
+                    <h4 class="img-fluid logo-light" style="color: white; font-variant: small-caps;">TechMark</h4>
+                    <h4 class="img-fluid logo-dark" style="color: #14a73e; font-variant: small-caps;">TechMark</h4>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -432,6 +432,9 @@
     </style>
     <!--Style-->
 
+    <script>
+        document.getElementById("email-from").innerHTML = '<input class="email-input" value="'+ sessionStorage.getItem("emailid") +'" disabled>';
+    </script>
     <!-- JAVASCRIPTS -->
     <script src="js/bootstrap.min.js"></script>
     <!--TESTISLIDER JS-->
