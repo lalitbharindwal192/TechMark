@@ -1,13 +1,11 @@
 <!DOCTYPE HTML>
 <html>
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="utf-8">
     <title>TechMark</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="LSIT Development">
     <link rel="shortcut icon" href="#" />
-
     <link href="assets/frameworks/foundation-emails/css/app.css" rel="stylesheet" type="text/css" />
     <link href="newsletterbuilder/newsletterbuilder.css" rel="stylesheet" type="text/css" /> 
     <style>
@@ -31,7 +29,7 @@
 <body>
 
 <div class="is-tool" style="position:fixed;display:block;">
-	<button id="btnSave" class="classic" style="width:auto;height:50px;">Export</button>
+	<button id="btnSave" onclick="display()" class="classic" style="width:auto;height:50px;">Export</button>
 </div>
 
 <table class="body" data-made-with-foundation="" style="margin-top:105px">
@@ -70,26 +68,15 @@
 		emailMode: true,
 		absolutePath: true,
 		snippetOpen: true,
-		buttonsMore: ['icon', 'image', '|', 'list', 'font', 'formatPara'],
-		customval: '65ad3057b652b'
+		buttonsMore: ['icon', 'image', '|', 'list', 'font', 'formatPara']
 	});
-	
-	var btnSave = document.querySelector('#btnSave');
-	btnSave.addEventListener('click', (e) => {
-		//alert("It's Just for demo purpose so you can not preview!");
-    builder.saveImages('saveimage.html', function(){
-        
-        //Get html
-        var html = builder.html(); //Get content
-        sessionStorage.setItem("templateId", html);
-        location = "../../email-dashboard.html";
 
-        //Submit the html to the server for saving. For example, if you're using html form:
-        //document.querySelector('#inpHtml').value = html;
-        //document.querySelector('#btnPost').click();
 
-    });
-});
+  function display(){
+    sessionStorage.setItem("templateId", builder.html());
+    location = "../../email-dashboard.html";
+  }
+
 </script>
 </body>
 </html>
