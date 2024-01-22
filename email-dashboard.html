@@ -161,18 +161,6 @@
 
     <iframe id="tempEditor" src="mail/email editor/templateEditor.html" width="100%" height="600"></iframe>
     <button type="button" onclick="exec()"></button>
-    <script>
-        function exec(){
-            var iframe = document.getElementById("tempEditor")
-        if(iframe.contentWindow){
-            console.log("ok")
-            var iframevariable = iframe.contentWindow.display()
-        }else{
-            console.log("Not ok")
-        }
-        }
-        
-    </script>
 
     <div class="container">
         <div class="row">
@@ -200,6 +188,15 @@
                             sessionStorage.setItem("templateId", null);
                         }else{
                             editor1.setHTMLCode(`<div style="text-align: center;"><img src="https://techmarkapp.netlify.app/images/logo-dark.png" style="height: 50px;"/><br/></div>`);
+                        }
+
+                        function exec(){
+                            var iframe = document.getElementById("tempEditor")
+                            if(iframe.contentWindow){
+                                var iframevariable = iframe.contentWindow.display();
+                                console.log(iframevariable);
+                                editor1.setHTMLCode(iframevariable);
+                            }
                         }
                     </script>
                     </div>
