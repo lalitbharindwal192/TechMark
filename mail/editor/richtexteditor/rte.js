@@ -177,7 +177,7 @@ RTE_DefaultConfig.imageItems = ["http://richtexteditor.com/uploads/1.jpg", "http
 RTE_DefaultConfig.galleryImages = ["http://richtexteditor.com/uploads/1.jpg", "http://richtexteditor.com/uploads/2.jpg", "http://richtexteditor.com/uploads/3.jpg", "http://richtexteditor.com/uploads/4.jpg", "http://richtexteditor.com/uploads/5.jpg", "http://richtexteditor.com/uploads/6.jpg"];
 // Default images for gallery Images dialog. 
 
-RTE_DefaultConfig.htmlTemplates = [["Template1", template1], ["Template2", template2], ["Template3", template3], ["Template4", template4], ["Template5", template5], ["Template6", template6]];
+//RTE_DefaultConfig.htmlTemplates = [["Template1", templates[0]], ["Template2", templates[1]], ["Template3", templates[2]], ["Template4", templates[3]], ["Template5", templates[4]], ["Template6", templates[5]]];
 // Default html Templates for html Templates dialog.
 
 RTE_DefaultConfig.inlineStyles = [["Red", "color:red", "color:red"], ["Bold", "font-weight:bold", "font-weight:bold"], ["Mark", "my-cls-mark"], ["Warning", "my-cls-warning"]];

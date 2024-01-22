@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="utf-8">
+    <title>TechMark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="#" />
+
+    <link href="assets/frameworks/foundation-emails/css/app.css" rel="stylesheet" type="text/css" />
+    <link href="newsletterbuilder/newsletterbuilder.css" rel="stylesheet" type="text/css" /> 
+    <style>
+      #btnSave{
+          font-family: Helvetica, Arial, sans-serif;
+          font-size: 16px;
+          font-weight: bold;
+          color: #ffffff;
+          text-decoration: none;
+          display: inline-block;
+          padding: 8px 16px 8px 16px;
+          border: 0 solid #2199e8;
+          margin: 10px 0 0 10px;
+          background-color: rgb(58, 189, 64);
+      }
+	  .is-selectbox{background: #2199e8;color: #ffffff;}
+	  .is-selectbox:hover {background: #2199e8;}
+	  .is-selectbox .is-icon-flex{fill: rgba(255, 255, 255, 0.9);}
+    </style>
+</head>
+<body>
+
+<div class="is-tool" style="position:fixed;display:block;">
+	<button id="btnSave" class="classic" style="width:auto;height:50px;">Export</button>
+</div>
+
+<table class="body" data-made-with-foundation="" style="margin-top:105px">
+  <tr>
+    <td class="float-center" align="center" valign="top">
+      <center data-parsed="">
+          <table align="center" class="container float-center">
+            <tbody>
+              <tr>
+                <td id="contentarea" class="is-container">
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </center>
+    </td>
+  </tr>
+</table>
+
+<script src="newsletterbuilder/newsletterbuilder.min.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+  /*<script src="assets/email-blocks/content-inlined.js" type="text/javascript">*/
+	var builder = new NewsletterBuilder({
+		container: '#contentarea',
+		snippetData: 'assets/email-blocks/snippetlist.html',
+		rowFormat: '<div><table align="center" class="container float-center"><tbody><tr><td><table class="row"><tbody><tr>' +
+		  '</tr></tbody></table></td></tr></tbody></table></div>',
+		cellFormat: '<th class="small-12 large-12 columns first last"><table><tbody><tr><th>' +
+		  '</th></tr></tbody></table></th>',
+		customTags: [["First Name", "{%first_name%}"],
+		  ["Last Name", "{%last_name%}"],
+		  ["Email", "{%email%}"]],
+		emailMode: true,
+		absolutePath: true,
+		snippetOpen: true,
+		buttonsMore: ['icon', 'image', '|', 'list', 'font', 'formatPara'],
+		customval: '65ad3057b652b'
+	});
+	
+	var btnSave = document.querySelector('#btnSave');
+	btnSave.addEventListener('click', (e) => {
+		//alert("It's Just for demo purpose so you can not preview!");
+    builder.saveImages('saveimage.html', function(){
+        
+        //Get html
+        var html = builder.html(); //Get content
+        sessionStorage.setItem("templateId", html);
+        location = "../../email-dashboard.html";
+
+        //Submit the html to the server for saving. For example, if you're using html form:
+        //document.querySelector('#inpHtml').value = html;
+        //document.querySelector('#btnPost').click();
+
+    });
+});
+</script>
+</body>
+</html>

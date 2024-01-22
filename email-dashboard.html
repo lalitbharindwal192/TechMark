@@ -119,6 +119,9 @@
                 <a class="nav-link auth-btn mx-2" aria-current="page" href="templates.html" style="background-color: #45d56d; border-radius: 5px;">Templates</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link auth-btn mx-2" aria-current="page" href="mail/email editor/templateEditor.html" style="background-color: #45d56d; border-radius: 5px;">Templates Editor</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link auth-btn mx-2" aria-current="page" href="subjectlines.html" style="background-color: #45d56d; border-radius: 5px;">Subjectlines</a>
               </li>
             </ul>
@@ -180,8 +183,9 @@
                         if(sessionStorage.getItem("templateId") != null && sessionStorage.getItem("templateId") != "null"){
                             editor1.setHTMLCode(sessionStorage.getItem("templateId"));
                             sessionStorage.setItem("templateId", null);
+                        }else{
+                            editor1.setHTMLCode(`<div style="text-align: center;"><img src="https://techmarkapp.netlify.app/images/logo-dark.png" style="height: 50px;"/><br/></div>`);
                         }
-                        editor1.setHTMLCode(`<div style="text-align: center;"><img src="https://techmarkapp.netlify.app/images/logo-dark.png" style="height: 50px;"/><br/></div>`);
                     </script>
                     </div>
                 </div>
