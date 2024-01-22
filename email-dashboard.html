@@ -26,7 +26,7 @@
                             "clientSecret": clientSecret,
                             "redirect_uri": redirectUri
                         }
-                        flow(event);
+                        //flow(event);
                     }
     </script>
     <meta charset="utf-8">
@@ -158,6 +158,21 @@
             </div>
         </div>
     </div>
+
+    <iframe id="tempEditor" src="mail/email editor/templateEditor.html" width="100%" height="600"></iframe>
+    <button type="button" onclick="exec()"></button>
+    <script>
+        function exec(){
+            var iframe = document.getElementById("tempEditor")
+        if(iframe.contentWindow){
+            console.log("ok")
+            var iframevariable = iframe.contentWindow.display()
+        }else{
+            console.log("Not ok")
+        }
+        }
+        
+    </script>
 
     <div class="container">
         <div class="row">
