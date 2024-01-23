@@ -121,9 +121,6 @@
                 <a class="nav-link auth-btn mx-2" aria-current="page" href="templates.html" style="background-color: #45d56d; border-radius: 5px;">Templates</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link auth-btn mx-2" aria-current="page" href="mail/email editor/templateEditor.html" style="background-color: #45d56d; border-radius: 5px;">Templates Editor</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link auth-btn mx-2" aria-current="page" href="subjectlines.html" style="background-color: #45d56d; border-radius: 5px;">Subjectlines</a>
               </li>
             </ul>
@@ -427,22 +424,22 @@
                 <h6 style="color: white; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Message</h6>
                 <hr>
             </div>
-        </div>
+            </div>
 
-        <div class="row">
-            <div class="col-xl-12">
-                <div style="margin:auto;padding:12px 6px 36px;max-width: 100%;">
-                    <div class="hs-docs-content-divider">
-                    <link rel="stylesheet" href="mail/editor/richtexteditor/rte_theme_default.css" />
-                    <div id="div_editor1"></div>
-                    <div id="send-emails-btn">
-                        <button class="btn btn-sm btn-outline-primary" id="editor1" onclick="processEmails(this)" style="margin:auto;padding:12px 6px 15px;max-width: 100%;width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
-                    </div>
-                    <h6 onclick="advanceEditor()" style="color: white; text-align: center;">Advance Editor</h6>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div style="margin:auto;padding:12px 6px 36px;max-width: 100%;">
+                        <div class="hs-docs-content-divider">
+                        <link rel="stylesheet" href="mail/editor/richtexteditor/rte_theme_default.css" />
+                        <div id="div_editor1"></div>
+                        <div id="send-emails-btn">
+                            <button class="btn btn-sm btn-outline-primary" id="editor1" onclick="processEmails(this)" style="margin:auto;padding:12px 6px 15px;max-width: 100%;width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
+                        </div>
+                        <h6 onclick="advanceEditor()" style="color: white; text-align: center;">Advance Editor</h6>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>`;
+            </div>`;
 
             var editor1 = new RichTextEditor("#div_editor1", { skin: "green", toolbar: "default" });
             if(sessionStorage.getItem("templateId") != null && sessionStorage.getItem("templateId") != "null"){
@@ -459,21 +456,21 @@
                 <h6 style="color: white; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Advance Editor</h6>
                 <hr>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12">
-                <iframe id="tempEditor" src="mail/email editor/templateEditor.html" width="100%" height="600"></iframe>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12" style="border-style: none; width: 100%; text-align: center;">
-                <div id="send-emails-btn">
-                    <button class="btn btn-sm btn-outline-primary" id="editor2" type="button" onclick="processEmails(this)" style="width: 100%; margin-top: -10px; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
+            <div class="row">
+                <div class="col-xl-12">
+                    <iframe id="tempEditor" src="mail/email editor/templateEditor.html" width="100%" height="600"></iframe>
                 </div>
-                <h6 onclick="textEditor()" style="color: white; text-align: center;">Text Editor</h6>
             </div>
-        </div>
-        <hr>`;
+            <div class="row">
+                <div class="col-xl-12" style="border-style: none; width: 100%; text-align: center;">
+                    <div id="send-emails-btn">
+                        <button class="btn btn-sm btn-outline-primary" id="editor2" type="button" onclick="processEmails(this)" style="width: 100%; margin-top: -10px; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
+                    </div>
+                    <h6 onclick="textEditor()" style="color: white; text-align: center;">Text Editor</h6>
+                </div>
+            </div>
+            <hr>`;
         }
     </script>
     <!-- JAVASCRIPTS -->

@@ -177,7 +177,7 @@ RTE_DefaultConfig.imageItems = ["http://richtexteditor.com/uploads/1.jpg", "http
 RTE_DefaultConfig.galleryImages = ["http://richtexteditor.com/uploads/1.jpg", "http://richtexteditor.com/uploads/2.jpg", "http://richtexteditor.com/uploads/3.jpg", "http://richtexteditor.com/uploads/4.jpg", "http://richtexteditor.com/uploads/5.jpg", "http://richtexteditor.com/uploads/6.jpg"];
 // Default images for gallery Images dialog. 
 
-RTE_DefaultConfig.htmlTemplates = [["Template1", templates[0]], ["Template2", templates[1]], ["Template3", templates[2]], ["Template4", templates[3]], ["Template5", templates[4]], ["Template6", templates[5]]];
+RTE_DefaultConfig.htmlTemplates = [["Template1", templates[0]], ["Template2", templates[1]], ["Template3", templates[2]], ["Template4", templates[3]], ["Template5", templates[4]], ["Template6", templates[5]], ["Template7", templates[6]], ["Template8", templates[7]], ["Template9", templates[8]], ["Template10", templates[9]], ["Template11", templates[10]], ["Template12", templates[11]], ["Template13", templates[12]], ["Template14", templates[13]], ["Template15", templates[14]], ["Template16", templates[15]], ["Template17", templates[16]], ["Template18", templates[17]], ["Template19", templates[18]], ["Template20", templates[19]]];
 // Default html Templates for html Templates dialog.
 
 RTE_DefaultConfig.inlineStyles = [["Red", "color:red", "color:red"], ["Bold", "font-weight:bold", "font-weight:bold"], ["Mark", "my-cls-mark"], ["Warning", "my-cls-warning"]];
