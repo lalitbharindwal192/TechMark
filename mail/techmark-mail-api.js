@@ -74,7 +74,18 @@ function getProfile(token, event){
 
 //Sending Script
 var tempCount = 0;
-function processEmails() {
+function processEmails(obj) {
+
+    if(obj.id == "editor1"){
+        var htmlContent = editor1.getHTMLCode();
+    }else{
+        var iframe = document.getElementById("tempEditor");
+        if(iframe.contentWindow){
+            var iframevariable = iframe.contentWindow.display();
+            var htmlContent = iframevariable;
+        }
+    }
+    
     // Get the value from the textarea
     var text = document.getElementById('email-list').value;
     var emailRegex = /\b[A-Za-z0-9._]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|ventures)\b/g;
@@ -89,7 +100,7 @@ function processEmails() {
             validEmails.forEach((email, index) => {
                 setTimeout(() => {
                     document.getElementById('send-emails-btn').innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px; max-width:100%; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending to ${email.trim()}</button>`;
-                    sendMail(email.trim());
+                    sendMail(email.trim(), htmlContent);
                     tempCount++;
                 }, index * 500);
             });
@@ -134,9 +145,7 @@ function AlertBtn(){
 var Success = 1;
 var failed = 1;
 var EmailCount = 1;
-function sendMail(mailId){
-const htmlContent = editor1.getHTMLCode();
-              
+function sendMail(mailId, htmlContent){
 const raw = 
 `From: ${sessionStorage.getItem("emailid")}
 To: ${mailId}      

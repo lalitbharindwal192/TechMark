@@ -26,7 +26,7 @@
                             "clientSecret": clientSecret,
                             "redirect_uri": redirectUri
                         }
-                        //flow(event);
+                        flow(event);
                     }
     </script>
     <meta charset="utf-8">
@@ -60,6 +60,8 @@
     <!-- Animation css -->
     <link rel="stylesheet" href="css/animate.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="mail/editor/richtexteditor/rte.js"></script>
+    <script type="text/javascript" src='mail/editor/richtexteditor/plugins/all_plugins.js'></script>
 </head>
 
 <body style="background-image: url('images/email-bg.jpg'); background-size: 100% 100%; background-size: cover;">
@@ -158,8 +160,7 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="mail/editor/richtexteditor/rte.js"></script>
-    <script type="text/javascript" src='mail/editor/richtexteditor/plugins/all_plugins.js'></script>
+
     <div class="container" id="Editor">
         <div class="row">
             <div class="col-md-12" style="text-align: center;">
@@ -178,20 +179,23 @@
                         <button class="btn btn-sm btn-outline-primary" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width: 100%;width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
                         <h6 onclick="advanceEditor()" style="color: white; text-align: center;">Advance Editor</h6>
                     </div>
+                    <script>
+                        var editor1 = new RichTextEditor("#div_editor1", { skin: "green", toolbar: "default" });
+                        if(sessionStorage.getItem("templateId") != null && sessionStorage.getItem("templateId") != "null"){
+                            editor1.setHTMLCode(sessionStorage.getItem("templateId"));
+                            sessionStorage.setItem("templateId", null);
+                        }else{
+                            editor1.setHTMLCode(`<div style="text-align: center;"><img src="https://techmarkapp.netlify.app/images/logo-dark.png" style="height: 50px;"/><br/></div>`);
+                        }
+                    </script>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        function showEditor(){
-        var editor1 = new RichTextEditor("#div_editor1", { skin: "green", toolbar: "default" });
-        if(sessionStorage.getItem("templateId") != null && sessionStorage.getItem("templateId") != "null"){
-            editor1.setHTMLCode(sessionStorage.getItem("templateId"));
-            sessionStorage.setItem("templateId", null);
-        }};
-    </script>
+    
+
     <div class="container" id="log"></div>
     <hr>
     <!-- Footer Start -->
@@ -396,7 +400,6 @@
     <!--Style-->
 
     <script>
-        showEditor()
         document.getElementById("email-from").innerHTML = '<input class="email-input" value="'+ sessionStorage.getItem("emailid") +'" disabled>';
         document.getElementById("log").innerHTML = `<div class="row">
             <div class="col-md-12" id="send-emails-btn-row">
@@ -417,12 +420,8 @@
                 <span id="seccessEmails">Success: 0</span>&nbsp;&nbsp;&nbsp;<span id="failedEmails">Failed: 0</span>
             </div>
         </div>`;
-        function exec(){
-            var iframe = document.getElementById("tempEditor");
-            if(iframe.contentWindow){
-                var iframevariable = iframe.contentWindow.display();
-                
-            }
+
+        function textEditor(){
             document.getElementById("Editor").innerHTML = `<div class="row">
             <div class="col-md-12" style="text-align: center;">
                 <h6 style="color: white; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Message</h6>
@@ -437,18 +436,21 @@
                     <link rel="stylesheet" href="mail/editor/richtexteditor/rte_theme_default.css" />
                     <div id="div_editor1"></div>
                     <div id="send-emails-btn">
-                        <button class="btn btn-sm btn-outline-primary" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width: 100%;width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
+                        <button class="btn btn-sm btn-outline-primary" id="editor1" onclick="processEmails(this)" style="margin:auto;padding:12px 6px 15px;max-width: 100%;width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
                         <h6 onclick="advanceEditor()" style="color: white; text-align: center;">Advance Editor</h6>
                     </div>
                     </div>
                 </div>
             </div>
         </div>`;
-        showEditor()
 
-            
-
-            editor1.setHTMLCode(iframevariable);
+            var editor1 = new RichTextEditor("#div_editor1", { skin: "green", toolbar: "default" });
+            if(sessionStorage.getItem("templateId") != null && sessionStorage.getItem("templateId") != "null"){
+                editor1.setHTMLCode(sessionStorage.getItem("templateId"));
+                sessionStorage.setItem("templateId", null);
+            }else{
+                editor1.setHTMLCode(`<div style="text-align: center;"><img src="https://techmarkapp.netlify.app/images/logo-dark.png" style="height: 50px;"/><br/></div>`);
+            }
         }
 
         function advanceEditor(){
@@ -465,7 +467,8 @@
         </div>
         <div class="row">
             <div class="col-xl-12" style="border-style: none; width: 100%; text-align: center;">
-                <button class="btn btn-sm btn-outline-primary" type="button" onclick="exec()" style="width: 100%; margin-top: -10px; background-color: #45d56d; border-color: #45d56d;">Export</button>
+                <button class="btn btn-sm btn-outline-primary" id="editor2" type="button" onclick="processEmails(this)" style="width: 100%; margin-top: -10px; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
+                <h6 onclick="textEditor()" style="color: white; text-align: center;">Text Editor</h6>
             </div>
         </div>
         <hr>`;
