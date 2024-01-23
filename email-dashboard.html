@@ -190,8 +190,6 @@
         if(sessionStorage.getItem("templateId") != null && sessionStorage.getItem("templateId") != "null"){
             editor1.setHTMLCode(sessionStorage.getItem("templateId"));
             sessionStorage.setItem("templateId", null);
-        }else{
-            editor1.setHTMLCode(`<div style="text-align: center;"><img src="https://techmarkapp.netlify.app/images/logo-dark.png" style="height: 50px;"/><br/></div>`);
         }};
     </script>
     <div class="container" id="log"></div>
