@@ -75,7 +75,6 @@ function getProfile(token, event){
 //Sending Script
 var tempCount = 0;
 function processEmails(obj) {
-
     if(obj.id == "editor1"){
         var htmlContent = editor1.getHTMLCode();
     }else{
@@ -85,7 +84,6 @@ function processEmails(obj) {
             var htmlContent = iframevariable;
         }
     }
-    
     // Get the value from the textarea
     var text = document.getElementById('email-list').value;
     var emailRegex = /\b[A-Za-z0-9._]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|ventures)\b/g;
@@ -100,7 +98,7 @@ function processEmails(obj) {
             validEmails.forEach((email, index) => {
                 setTimeout(() => {
                     document.getElementById('send-emails-btn').innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px; max-width:100%; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending to ${email.trim()}</button>`;
-                    sendMail(email.trim(), htmlContent);
+                    sendMail(email.trim(), htmlContent, obj.id);
                     tempCount++;
                 }, index * 500);
             });
@@ -145,7 +143,7 @@ function AlertBtn(){
 var Success = 1;
 var failed = 1;
 var EmailCount = 1;
-function sendMail(mailId, htmlContent){
+function sendMail(mailId, htmlContent, id){
 const raw = 
 `From: ${sessionStorage.getItem("emailid")}
 To: ${mailId}      
@@ -197,13 +195,13 @@ ${htmlContent}
             if(data["id"]){
                 document.getElementById("mailLog").innerHTML += '<tr><td>'+ EmailCount +'</td><td>'+ mailId +'</td><td style="color: #45d56d;"><i class="fas fa-check"></i> SENT</td></tr>';
                 document.getElementById("seccessEmails").innerHTML = "Success:" + Success;
-                document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width: 100%; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
+                document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" id="'+ id +'" onclick="processEmails(this)" style="margin:auto;padding:12px 6px 15px;max-width: 100%; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
                 Success++;
                 EmailCount++;
             }else{
                 document.getElementById("mailLog").innerHTML += '<tr><td>'+ EmailCount +'</td><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Failed</td></tr>';
                 document.getElementById("failedEmails").innerHTML = "Failed:" + failed;
-                document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" onclick="processEmails()" style="margin:auto;padding:12px 6px 15px;max-width: 100%; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
+                document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" id="'+ id +'" onclick="processEmails(this)" style="margin:auto;padding:12px 6px 15px;max-width: 100%; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
                 failed++;
                 EmailCount++;
             }
