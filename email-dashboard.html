@@ -287,7 +287,7 @@
 		}
 
 		#div_editor1 rte-bottom {
-			background-color: #45d56d !important;
+			background-color: #ffffff !important;
 		}
 
 		#div_editor1 rte-dialog-inner {
@@ -437,8 +437,8 @@
                     <div id="div_editor1"></div>
                     <div id="send-emails-btn">
                         <button class="btn btn-sm btn-outline-primary" id="editor1" onclick="processEmails(this)" style="margin:auto;padding:12px 6px 15px;max-width: 100%;width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
-                        <h6 onclick="advanceEditor()" style="color: white; text-align: center;">Advance Editor</h6>
                     </div>
+                    <h6 onclick="advanceEditor()" style="color: white; text-align: center;">Advance Editor</h6>
                     </div>
                 </div>
             </div>
@@ -467,7 +467,9 @@
         </div>
         <div class="row">
             <div class="col-xl-12" style="border-style: none; width: 100%; text-align: center;">
-                <button class="btn btn-sm btn-outline-primary" id="editor2" type="button" onclick="processEmails(this)" style="width: 100%; margin-top: -10px; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
+                <div id="send-emails-btn">
+                    <button class="btn btn-sm btn-outline-primary" id="editor2" type="button" onclick="processEmails(this)" style="width: 100%; margin-top: -10px; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
+                </div>
                 <h6 onclick="textEditor()" style="color: white; text-align: center;">Text Editor</h6>
             </div>
         </div>
