@@ -57,7 +57,7 @@ function getProfile(token, event){
         }
         }).then(response => {
           if (!response.ok) {
-            alert("Sign In Using "+ event["email"])
+            //alert("Sign In Using "+ event["email"])
           }
           return response.json();
         }).then(data => {
