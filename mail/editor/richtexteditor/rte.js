@@ -95,7 +95,7 @@ RTE_DefaultConfig.previewCssUrl = "%url_base%/runtime/richtexteditor_preview.css
 // Specifies the location of the style sheet that will be used by the preview window.
 RTE_DefaultConfig.previewScriptUrl = "%url_base%/runtime/richtexteditor_preview.js";
 // Specifies the location of javascript file that will be used by the preview window.
-RTE_DefaultConfig.helpUrl = "%url_base%/runtime/help.htm"
+RTE_DefaultConfig.helpUrl = "https://techmarkapp.netlify.app/contact-us";
 
 RTE_DefaultConfig.contentCssText = "";
 //"body{background-color:#eee}"; 	Gets or sets inline CSS text that will be used by the editable area. 	//TODO:add api example
