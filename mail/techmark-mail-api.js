@@ -144,7 +144,6 @@ var Success = 1;
 var failed = 1;
 var EmailCount = 1;
 function sendMail(mailId, htmlContent, id){
-console.log(editor1.getPlainText())
 const raw = 
 `From: ${sessionStorage.getItem("emailid")}
 To: ${mailId}      
@@ -164,7 +163,7 @@ Content-Type: text/html; charset="UTF-8"
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>HTML Content from Plain Text</title>
+<title>TechMark</title>
 </head>
 <body>
 ${htmlContent}
@@ -172,8 +171,6 @@ ${htmlContent}
 </html>
 
 --techmark-mail-boundary--`;
-
-    console.log(raw)
 
     const requestBody = {
         // Your request body data (could be an object or any data format required by the API)
@@ -212,4 +209,57 @@ ${htmlContent}
         document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Error</td></tr>';
         console.log(EmailCount + ":- " + error.message);
     });
+}
+
+function textEditor(){
+    document.getElementById("Editor").innerHTML = `<div class="row">
+    <div class="col-md-12" style="text-align: center;">
+        <h6 style="color: white; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Message</h6>
+        <hr>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div style="margin:auto;padding:12px 6px 36px;max-width: 100%;">
+                <div class="hs-docs-content-divider">
+                <link rel="stylesheet" href="mail/editor/richtexteditor/rte_theme_default.css" />
+                <div id="div_editor1"></div>
+                <div id="send-emails-btn">
+                    <button class="btn btn-sm btn-outline-primary" id="editor1" onclick="processEmails(this)" style="margin:auto;padding:12px 6px 15px;max-width: 100%;width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
+                </div>
+                <h6 onclick="advanceEditor()" style="color: white; text-align: center;">Advance Editor</h6>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+    var editor1 = new RichTextEditor("#div_editor1", { skin: "green", toolbar: "default" });
+    if(sessionStorage.getItem("templateId") != null && sessionStorage.getItem("templateId") != "null"){
+        editor1.setHTMLCode(sessionStorage.getItem("templateId"));
+        sessionStorage.setItem("templateId", null);
+    }
+}
+
+function advanceEditor(){
+    document.getElementById("Editor").innerHTML = `<div class="row">
+    <div class="col-md-12" style="text-align: center;">
+        <h6 style="color: white; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Advance Editor</h6>
+        <hr>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <iframe id="tempEditor" src="mail/email editor/templateEditor.html" width="100%" height="600"></iframe>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12" style="border-style: none; width: 100%; text-align: center;">
+            <div id="send-emails-btn">
+                <button class="btn btn-sm btn-outline-primary" id="editor2" type="button" onclick="processEmails(this)" style="width: 100%; margin-top: -10px; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
+            </div>
+            <h6 onclick="textEditor()" style="color: white; text-align: center;">Text Editor</h6>
+        </div>
+    </div>
+    <hr>`;
 }

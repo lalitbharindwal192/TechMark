@@ -26,7 +26,7 @@
                             "clientSecret": clientSecret,
                             "redirect_uri": redirectUri
                         }
-                        flow(event);
+                        //flow(event);
                     }
     </script>
     <meta charset="utf-8">
@@ -108,7 +108,6 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-    
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
               <li class="nav-item">
@@ -188,8 +187,6 @@
             </div>
         </div>
     </div>
-
-    
 
     <div class="container" id="log"></div>
     <hr>
@@ -415,59 +412,6 @@
                 <span id="seccessEmails">Success: 0</span>&nbsp;&nbsp;&nbsp;<span id="failedEmails">Failed: 0</span>
             </div>
         </div>`;
-
-        function textEditor(){
-            document.getElementById("Editor").innerHTML = `<div class="row">
-            <div class="col-md-12" style="text-align: center;">
-                <h6 style="color: white; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Message</h6>
-                <hr>
-            </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xl-12">
-                    <div style="margin:auto;padding:12px 6px 36px;max-width: 100%;">
-                        <div class="hs-docs-content-divider">
-                        <link rel="stylesheet" href="mail/editor/richtexteditor/rte_theme_default.css" />
-                        <div id="div_editor1"></div>
-                        <div id="send-emails-btn">
-                            <button class="btn btn-sm btn-outline-primary" id="editor1" onclick="processEmails(this)" style="margin:auto;padding:12px 6px 15px;max-width: 100%;width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
-                        </div>
-                        <h6 onclick="advanceEditor()" style="color: white; text-align: center;">Advance Editor</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-
-            var editor1 = new RichTextEditor("#div_editor1", { skin: "green", toolbar: "default" });
-            if(sessionStorage.getItem("templateId") != null && sessionStorage.getItem("templateId") != "null"){
-                editor1.setHTMLCode(sessionStorage.getItem("templateId"));
-                sessionStorage.setItem("templateId", null);
-            }
-        }
-
-        function advanceEditor(){
-            document.getElementById("Editor").innerHTML = `<div class="row">
-            <div class="col-md-12" style="text-align: center;">
-                <h6 style="color: white; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Advance Editor</h6>
-                <hr>
-            </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12">
-                    <iframe id="tempEditor" src="mail/email editor/templateEditor.html" width="100%" height="600"></iframe>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12" style="border-style: none; width: 100%; text-align: center;">
-                    <div id="send-emails-btn">
-                        <button class="btn btn-sm btn-outline-primary" id="editor2" type="button" onclick="processEmails(this)" style="width: 100%; margin-top: -10px; background-color: #45d56d; border-color: #45d56d;">Send Email</button>
-                    </div>
-                    <h6 onclick="textEditor()" style="color: white; text-align: center;">Text Editor</h6>
-                </div>
-            </div>
-            <hr>`;
-        }
     </script>
     <!-- JAVASCRIPTS -->
     <script src="js/bootstrap.min.js"></script>
