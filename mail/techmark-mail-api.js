@@ -86,7 +86,7 @@ function processEmails(obj) {
     }
     // Get the value from the textarea
     var text = document.getElementById('email-list').value;
-    var emailRegex = /\b[A-Za-z0-9._]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|ventures)\b/g;
+    var emailRegex = /\b[A-Za-z0-9._]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|au|ventures|is)\b/g;
     // Find all matches of valid email patterns in the textarea
     var validEmails = text.match(emailRegex);
     // Count the number of valid emails
@@ -112,7 +112,7 @@ function countLines() {
     var text = document.getElementById('email-list').value;
     var lineCount = (text.match(/\n/g) || []).length + 1;
     document.getElementById('lineCount').innerText = 'Number of Lines: ' + lineCount;
-    var emailRegex = /\b[A-Za-z0-9._]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|au)\b/g;
+    var emailRegex = /\b[A-Za-z0-9._]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|au|ventures|is)\b/g;
     // Find all matches of valid email patterns in the textarea
     var validEmails = text.match(emailRegex);
     // Count the number of valid emails
@@ -144,6 +144,7 @@ var Success = 1;
 var failed = 1;
 var EmailCount = 1;
 function sendMail(mailId, htmlContent, id){
+console.log(editor1.getPlainText())
 const raw = 
 `From: ${sessionStorage.getItem("emailid")}
 To: ${mailId}      
@@ -171,6 +172,8 @@ ${htmlContent}
 </html>
 
 --techmark-mail-boundary--`;
+
+    console.log(raw)
 
     const requestBody = {
         // Your request body data (could be an object or any data format required by the API)
