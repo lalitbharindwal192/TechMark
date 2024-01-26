@@ -112,7 +112,7 @@ function uploadContent(Log, id){
             Log["to"].forEach((email, index) => {
                 setTimeout(() => {
                     document.getElementById('send-emails-btn').innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px; max-width:100%; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending to ${email.trim()}</button>`;
-                    sendMail(email.trim(), htmlContent, id);
+                    sendMail(email.trim(), Log["message"], id);
                 }, index * 500);
             });
          }   
