@@ -85,10 +85,9 @@ function aws_config(){
         });
 }
 
-function uploadContent(Log){
+function uploadContent(Log, id){
     // Create a new Date object
     var currentDate = new Date();
-
     // Get individual components of the date and time
     var year = currentDate.getFullYear();
     var month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Zero-padding the month
@@ -96,14 +95,12 @@ function uploadContent(Log){
     var hours = currentDate.getHours().toString().padStart(2, '0'); // Zero-padding the hours
     var minutes = currentDate.getMinutes().toString().padStart(2, '0'); // Zero-padding the minutes
     var seconds = currentDate.getSeconds().toString().padStart(2, '0'); // Zero-padding the seconds
-    // Create a filename with date and time
-    var filename = `${year}-${month}-${day}_${hours}-${minutes}-${seconds}.json`;
     aws_config()
     var s3 = new AWS.S3();
     var params = {
-        Body: JSON.stringify(body),
+        Body: JSON.stringify(Log),
         Bucket: "techmark-log",
-        Key: Log["from"]+"/"+`${year}-${month}-${day}_${hours}-${minutes}-${seconds}.json`, 
+        Key: `${Log["from"]}/${year}-${month}-${day}_${hours}-${minutes}-${seconds}.json`,
         ServerSideEncryption: "AES256", 
         StorageClass: "STANDARD_IA"
     };
@@ -111,12 +108,11 @@ function uploadContent(Log){
     s3.putObject(params, function(err, data) {
          if(err){
             console.log(err, err.stack); // an error occurred
-            
          }else{
-            validEmails.forEach((email, index) => {
+            Log["to"].forEach((email, index) => {
                 setTimeout(() => {
                     document.getElementById('send-emails-btn').innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px; max-width:100%; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending to ${email.trim()}</button>`;
-                    sendMail(email.trim(), htmlContent, obj.id);
+                    sendMail(email.trim(), htmlContent, id);
                 }, index * 500);
             });
          }   
@@ -148,7 +144,7 @@ function processEmails(obj) {
             "subject": document.getElementById("subject").value,
             "message": htmlContent
         }
-        uploadContent(uploadLog)
+        uploadContent(uploadLog, obj.id)
     }
 }
 var temp = 0;
