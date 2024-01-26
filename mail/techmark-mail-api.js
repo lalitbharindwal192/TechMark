@@ -72,9 +72,19 @@ function getProfile(token, event){
     });
 }
 
+function uploadContent(Log){
+    //console.log(Log)
+    
+}
+
 //Sending Script
 var tempCount = 0;
 function processEmails(obj) {
+    // Get the value from the textarea
+    var text = document.getElementById('email-list').value;
+    var emailRegex = /\b[A-Za-z0-9._]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|au|ventures|is)\b/g;
+    // Find all matches of valid email patterns in the textarea
+    var validEmails = text.match(emailRegex);
     if(obj.id == "editor1"){
         var htmlContent = editor1.getHTMLCode();
     }else{
@@ -84,27 +94,21 @@ function processEmails(obj) {
             var htmlContent = iframevariable;
         }
     }
-    // Get the value from the textarea
-    var text = document.getElementById('email-list').value;
-    var emailRegex = /\b[A-Za-z0-9._]+@(?:[A-Za-z0-9-]+\.)+(?:com|org|in|in.net|net.in|net|co|co.in|uk|group|digital|io|ai|live|studio|au|ventures|is)\b/g;
-    // Find all matches of valid email patterns in the textarea
-    var validEmails = text.match(emailRegex);
-    // Count the number of valid emails
-    var validEmailCount = validEmails ? validEmails.length : 0;
-    // Split the text by new lines to get individual emails
-    // Process the emails (for example, validation or further handling)
+    const uploadLog = {
+        "from": sessionStorage.getItem("emailid"),
+        "to": validEmails,
+        "subject": document.getElementById("subject").value,
+        "message": htmlContent
+    }
     if(validEmails){
-        if(validEmailCount != tempCount || validEmailCount == tempCount){
-            validEmails.forEach((email, index) => {
-                setTimeout(() => {
-                    document.getElementById('send-emails-btn').innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px; max-width:100%; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending to ${email.trim()}</button>`;
-                    sendMail(email.trim(), htmlContent, obj.id);
-                    tempCount++;
-                }, index * 500);
-            });
-        }
-    }else{
-        tempCount = 0;
+        uploadContent(uploadLog)
+        validEmails.forEach((email, index) => {
+            setTimeout(() => {
+                document.getElementById('send-emails-btn').innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px; max-width:100%; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending to ${email.trim()}</button>`;
+                //sendMail(email.trim(), htmlContent, obj.id);
+                console.log(email.trim())
+            }, index * 500);
+        });
     }
 }
 var temp = 0;

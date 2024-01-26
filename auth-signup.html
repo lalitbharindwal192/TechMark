@@ -65,7 +65,20 @@
                                 </div>
                                 <div class="p-2 mt-4">
                                     <form class="needs-validation" novalidate action="https://themesbrand.com/velzon/html/default/index.html">
-
+                                        <div class="mb-3">
+                                            <label for="companyName" class="form-label">Company Name<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="companyName" placeholder="Enter Name of company" required>
+                                            <div class="invalid-feedback">
+                                                Please enter company name
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="fullName" class="form-label">Full Name<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="fullName" placeholder="Enter Your Full Name" required>
+                                            <div class="invalid-feedback">
+                                                Please enter Full Name
+                                            </div>
+                                        </div>
                                         <div class="mb-3">
                                             <label for="useremail" class="form-label">Email <span class="text-danger">*</span></label>
                                             <input type="email" class="form-control" id="useremail" placeholder="Enter email address" required>
@@ -74,10 +87,20 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="username" placeholder="Enter username" required>
+                                            <label for="contactNumber" class="form-label">Contact Number<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="contactNumber" placeholder="Enter username" required>
                                             <div class="invalid-feedback">
-                                                Please enter username
+                                                Please enter contact number
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="industryType" class="form-label">Industry Type<span class="text-danger">*</span></label>
+                                            <select class="form-control" id="industryType" required>
+                                                <option selected hidden>select</option>
+                                                <option>select</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please enter contact number
                                             </div>
                                         </div>
 
@@ -121,7 +144,6 @@
                                         </div>
                                     -->
                                     </form>
-
                                 </div>
                             </div>
                             <!-- end card body -->
