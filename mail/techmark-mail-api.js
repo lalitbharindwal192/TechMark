@@ -92,40 +92,6 @@ function uploadContent(Log, id){
     var minutes = currentDate.getMinutes().toString().padStart(2, '0'); // Zero-padding the minutes
     var seconds = currentDate.getSeconds().toString().padStart(2, '0'); // Zero-padding the seconds
     document.getElementById('send-emails-btn').innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px; max-width:100%; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending...</button>`;
-
-const raw = 
-`From: ${sessionStorage.getItem("emailid")}
-To: ${mailId}      
-Subject: ${document.getElementById("subject").value}
-MIME-Version: 1.0
-Content-Type: multipart/alternative; boundary="techmark-mail-boundary"
-
---techmark-mail-boundary
-Content-Type: text/plain; charset="UTF-8"
-
-${editor1.getPlainText()}
-
---techmark-mail-boundary
-Content-Type: text/html; charset="UTF-8"
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>TechMark</title>
-</head>
-<body>
-${Log["message"]}
-</body>
-</html>
-
---techmark-mail-boundary--`;
-
-const requestBody = {
-    // Your request body data (could be an object or any data format required by the API)
-    "raw": btoa(unescape(encodeURIComponent(raw)))
-};
-
     aws_config()
     var s3 = new AWS.S3();
     var params = {
@@ -144,8 +110,8 @@ const requestBody = {
             Log["to"].forEach((email, index) => {
                 setTimeout(() => {
                     //document.getElementById('send-emails-btn').innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px; max-width:100%; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending to ${email.trim()}</button>`;
-                    sendMail(email.trim(), requestBody, id);
-                }, index * 400);
+                    sendMail(email.trim(), Log["message"], id);
+                }, index * 600);
             });
          }   
     });
@@ -215,7 +181,40 @@ function AlertBtn(){
 var Success = 1;
 var failed = 1;
 var EmailCount = 1;
-function sendMail(mailId, body, id){
+function sendMail(mailId, htmlContent, id){
+const raw = 
+`From: ${sessionStorage.getItem("emailid")}
+To: ${mailId}      
+Subject: ${document.getElementById("subject").value}
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="techmark-mail-boundary"
+
+--techmark-mail-boundary
+Content-Type: text/plain; charset="UTF-8"
+
+${editor1.getPlainText()}
+
+--techmark-mail-boundary
+Content-Type: text/html; charset="UTF-8"
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TechMark</title>
+</head>
+<body>
+${htmlContent}
+</body>
+</html>
+
+--techmark-mail-boundary--`;
+
+const requestBody = {
+    // Your request body data (could be an object or any data format required by the API)
+    "raw": btoa(unescape(encodeURIComponent(raw)))
+};
+
     fetch('https://gmail.googleapis.com/gmail/v1/users/'+ sessionStorage.getItem("emailid")+ '/messages/send', {
          method: 'POST', // Change the method accordingly (POST, PUT, etc.)
          headers: {
@@ -223,7 +222,7 @@ function sendMail(mailId, body, id){
             'Content-Type': 'application/json', // Adjust the content type as needed
             // Add other headers if required by the API
         },
-         body: JSON.stringify(body) // Convert the request body to JSON string
+         body: JSON.stringify(requestBody) // Convert the request body to JSON string
         }).then(response => {
          if (!response.ok) {
             return false
