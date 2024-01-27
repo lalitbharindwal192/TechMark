@@ -3,6 +3,7 @@ function extractCodeFromUrl() {
     return urlParams.get('code');
   }
 
+var event;
 function flow(event){
     const bearer = sessionStorage.getItem("bearer")
     if(bearer == null || bearer == "undefined"){
@@ -15,7 +16,7 @@ function flow(event){
                     const clientId = '36183247469-fq3mbf373vfnvnd0933l4f8udcbqfhto.apps.googleusercontent.com';
                     const redirectUri = 'https://techmarkapp.netlify.app/email-dashboard';
                     const clientSecret = "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";
-                    const event = {
+                    event = {
                         "email": techmarkCode,
                         "clientId": clientId,
                         "clientSecret": clientSecret,
