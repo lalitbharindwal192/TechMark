@@ -57,14 +57,13 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div class="card mt-4">
-
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
                                     <h5 class="text-primary">Create New Account</h5>
                                     <p class="text-muted">Get your free TechMark account now</p>
                                 </div>
-                                <div class="p-2 mt-4">
-                                    <form class="needs-validation" novalidate action="https://themesbrand.com/velzon/html/default/index.html">
+                                <div class="p-2 mt-4" id="signUp">
+                                    <form class="needs-validation" onSubmit="signUp(event)">
                                         <div class="mb-3">
                                             <label for="companyName" class="form-label">Company Name<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="companyName" placeholder="Enter Name of company" required>
@@ -80,30 +79,19 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="useremail" class="form-label">Email <span class="text-danger">*</span></label>
-                                            <input type="email" class="form-control" id="useremail" placeholder="Enter email address" required>
+                                            <label for="businessemail" class="form-label">Business Email <span class="text-danger">*</span></label>
+                                            <input type="email" class="form-control" id="businessemail" placeholder="Enter business email address" required>
                                             <div class="invalid-feedback">
-                                                Please enter email
+                                                Please enter Business email
                                             </div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="contactNumber" class="form-label">Contact Number<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="contactNumber" placeholder="Enter username" required>
+                                            <input type="number" class="form-control" id="contactNumber" placeholder="Enter contact number" required>
                                             <div class="invalid-feedback">
                                                 Please enter contact number
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="industryType" class="form-label">Industry Type<span class="text-danger">*</span></label>
-                                            <select class="form-control" id="industryType" required>
-                                                <option selected hidden>select</option>
-                                                <option>select</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Please enter contact number
-                                            </div>
-                                        </div>
-
                                         <div class="mb-3">
                                             <label class="form-label" for="password-input">Password</label>
                                             <div class="position-relative auth-pass-inputgroup">
@@ -114,11 +102,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="mb-4">
-                                            <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the TechMark <a href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use</a></p>
-                                        </div>
-
                                         <div id="password-contain" class="p-3 bg-light mb-2 rounded">
                                             <h5 class="fs-13">Password must contain:</h5>
                                             <p id="pass-length" class="invalid fs-12 mb-2">Minimum <b>8 characters</b></p>
@@ -126,23 +109,25 @@
                                             <p id="pass-upper" class="invalid fs-12 mb-2">At least <b>uppercase</b> letter (A-Z)</p>
                                             <p id="pass-number" class="invalid fs-12 mb-0">A least <b>number</b> (0-9)</p>
                                         </div>
-
+                                        <div class="mb-4">
+                                            <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the TechMark <a href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use</a></p>
+                                        </div>
                                         <div class="mt-4">
                                             <button class="btn btn-success w-100" type="submit">Sign Up</button>
                                         </div>
-                                    <!--
-                                        <div class="mt-4 text-center">
-                                            <div class="signin-other-title">
-                                                <h5 class="fs-13 mb-4 title text-muted">Create account with</h5>
+                                        <!--
+                                            <div class="mt-4 text-center">
+                                                <div class="signin-other-title">
+                                                    <h5 class="fs-13 mb-4 title text-muted">Create account with</h5>
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="btn btn-primary btn-icon waves-effect waves-light"><i class="ri-facebook-fill fs-16"></i></button>
+                                                    <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>
+                                                    <button type="button" class="btn btn-dark btn-icon waves-effect waves-light"><i class="ri-github-fill fs-16"></i></button>
+                                                    <button type="button" class="btn btn-info btn-icon waves-effect waves-light"><i class="ri-twitter-fill fs-16"></i></button>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <button type="button" class="btn btn-primary btn-icon waves-effect waves-light"><i class="ri-facebook-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-dark btn-icon waves-effect waves-light"><i class="ri-github-fill fs-16"></i></button>
-                                                <button type="button" class="btn btn-info btn-icon waves-effect waves-light"><i class="ri-twitter-fill fs-16"></i></button>
-                                            </div>
-                                        </div>
-                                    -->
+                                        -->
                                     </form>
                                 </div>
                             </div>
@@ -153,7 +138,6 @@
                         <div class="mt-4 text-center">
                             <p class="mb-0">Already have an account ? <a href="auth-signin.html" class="fw-semibold text-primary text-decoration-underline"> Signin </a> </p>
                         </div>
-
                     </div>
                 </div>
                 <!-- end row -->
@@ -179,6 +163,78 @@
         <!-- end Footer -->
     </div>
     <!-- end auth-page-wrapper -->
+
+    <script>
+        function generateOTP() { 
+          // Declare a string variable  
+          // which stores all string 
+          var string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+          let OTP = ''; 
+          // Find the length of string 
+          var len = string.length; 
+          for (let i = 0; i < 6; i++ ) { 
+              OTP += string[Math.floor(Math.random() * len)]; 
+          } 
+          return OTP; 
+        } 
+        var userData;
+        var secret_code;
+        function sendOTP(){
+            var content = "Dear "+ userData["fullName"] +",\n\nYour OTP is "+ secret_code +"\nDo not share it with anyone by any means.\nCode is only valid for 5 minutes\n\nRegards,\nTechMark Team"
+            fetch('https://wim3o9rb20.execute-api.us-east-1.amazonaws.com/techmark-gmail-api/',
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    "to": userData["businessemail"],
+                    "subject": "Verify your Email for TechMark",
+                    "content": content
+                })
+            }).then(response => {
+                //handle response      
+            }).then(data => {
+                //handle data
+                //console.log(data);
+            }).catch(error => {
+                //handle error
+                console.log(error)
+            });
+        }
+
+        function signUp(event){
+            userData = {
+                "companyName": document.getElementById("companyName").value,
+                "fullName": document.getElementById("fullName").value,
+                "businessemail": document.getElementById("businessemail").value,
+                "contactNumber": document.getElementById("contactNumber").value,
+                "password-input": document.getElementById("password-input").value
+            }
+            secret_code = generateOTP();
+            alert("OTP sent on "+ userData["businessemail"])
+            
+            document.getElementById("signUp").innerHTML = 
+                    `<form class="needs-validation" onsubmit="verifyOTP();return false">
+                        <div class="mb-3">
+                            <label for="otp" class="form-label">Enter Your OTP<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="otp" placeholder="Enter OTP" required>
+                            <div class="invalid-feedback">
+                                Please enter OTP
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button class="btn btn-success w-100" type="submit">Verify</button>
+                        </div>
+                    </form>`;
+            sendOTP()
+        }
+
+        function verifyOTP(){
+            if(document.getElementById("otp").value == secret_code){
+                console.log("sucess")
+            }else{
+                console.log("failed")
+            }
+        }
+    </script>
 
     <!-- JAVASCRIPT -->
     <script src="assets-main/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
