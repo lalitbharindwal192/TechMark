@@ -5,9 +5,21 @@
     <!-- Mail API -->
     <script src="mail/techmark-mail-api.js"></script>
     <script>
-      
-            flow();
-               
+        if((sessionStorage.getItem("email") != null) && (sessionStorage.getItem("email") != "null")){
+            console.log(sessionStorage.getItem("email"))
+            const clientId = '36183247469-fq3mbf373vfnvnd0933l4f8udcbqfhto.apps.googleusercontent.com';
+            const redirectUri = 'https://techmarkapp.netlify.app/email-dashboard';
+            const clientSecret = "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";
+            const event = {
+                "email": sessionStorage.getItem("email"),
+                "clientId": clientId,
+                "clientSecret": clientSecret,
+                "redirect_uri": redirectUri
+            }
+            flow(event);
+        }else{
+            location = "auth-signin.html";
+        }
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -372,7 +384,7 @@
     <!--Style-->
 
     <script>
-        document.getElementById("email-from").innerHTML = '<input class="email-input" value="'+ event["email"] +'" disabled>';
+        document.getElementById("email-from").innerHTML = '<input class="email-input" value="'+ sessionStorage.getItem("email") +'" disabled>';
         document.getElementById("log").innerHTML = `<div class="row">
             <div class="col-md-12" id="send-emails-btn-row">
                 <h5 style="color: white; font-weight: bold;">Sending Log</h5>

@@ -3,29 +3,14 @@ function extractCodeFromUrl() {
     return urlParams.get('code');
   }
 
-var event;
 function flow(event){
     const bearer = sessionStorage.getItem("bearer")
     if(bearer == null || bearer == "undefined"){
         const authorizationCode = extractCodeFromUrl();
-        const techmarkCode = extracttechmarkCode()
         if (authorizationCode) {
             authenticate_code(authorizationCode, event);
         }else{
-            if(techmarkCode){
-                    const clientId = '36183247469-fq3mbf373vfnvnd0933l4f8udcbqfhto.apps.googleusercontent.com';
-                    const redirectUri = 'https://techmarkapp.netlify.app/email-dashboard';
-                    const clientSecret = "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";
-                    event = {
-                        "email": techmarkCode,
-                        "clientId": clientId,
-                        "clientSecret": clientSecret,
-                        "redirect_uri": redirectUri
-                    }
-                    startOAuthFlow(event["clientId"], event["redirect_uri"]);
-            }else{
-                location = "auth-signin.html";
-            }   
+            startOAuthFlow(event["clientId"], event["redirect_uri"]);
         }
     }else{
         getProfile(decodeURIComponent(escape(atob(bearer))), event)
@@ -127,14 +112,6 @@ function uploadContent(Log, id){
             });
          }   
     });
-}
-
-function extracttechmarkCode(){
-    const urlParams = new URLSearchParams(window.location.search);
-    const techmarkcode = urlParams.get('techmarkcode');
-    if(techmarkcode){
-        return decodeURIComponent(escape(atob(techmarkcode)));
-    }
 }
 
 //Sending Script

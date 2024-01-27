@@ -133,7 +133,7 @@
     <!-- end auth-page-wrapper -->
 
     <script>
-        if(sessionStorage.getItem("emailid")!=null || localStorage.getItem("emailid")!=null){
+        if(sessionStorage.getItem("email")!=null || localStorage.getItem("email")!=null){
             location = "services.html";
         }
 
@@ -167,7 +167,8 @@
             }else{
                 if(password == decodeURIComponent(escape(atob(JSON.parse(data.Body.toString('utf-8'))["password-input"])))){
                     document.getElementById("alert").innerHTML = "Login Successfully";
-                    location = `services.html?techmarkcode=${btoa(unescape(encodeURIComponent(JSON.parse(data.Body.toString('utf-8'))["businessemail"])))}`
+                    sessionStorage.setItem("email", btoa(unescape(encodeURIComponent(JSON.parse(data.Body.toString('utf-8'))["businessemail"]))))
+                    location = "services.html"
                 }else{
                     document.getElementById("alert").innerHTML = "Incorrect Password";
                 }
