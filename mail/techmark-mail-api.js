@@ -214,7 +214,7 @@ const requestBody = {
     "raw": btoa(unescape(encodeURIComponent(raw)))
 };
 
-    fetch('https://gmail.googleapis.com/gmail/v1/users/'+ sessionStorage.getItem("emailid")+ '/messages/send', {
+    fetch('https://gmail.googleapis.com/gmail/v1/users/'+ decodeURIComponent(escape(atob(sessionStorage.getItem("email"))))+ '/messages/send', {
          method: 'POST', // Change the method accordingly (POST, PUT, etc.)
          headers: {
             'Authorization': `Bearer ${decodeURIComponent(escape(atob(sessionStorage.getItem("bearer"))))}`,
