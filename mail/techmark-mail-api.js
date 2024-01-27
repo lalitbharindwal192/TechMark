@@ -107,12 +107,15 @@ function uploadContent(Log, id){
             //console.log(err, err.stack); // an error occurred
             alert("Network Problem! Try After Sometime")
          }else{
-            Log["to"].forEach((email, index) => {
+            /*Log["to"].forEach((email, index) => {
                 setTimeout(() => {
                     //document.getElementById('send-emails-btn').innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px; max-width:100%; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending to ${email.trim()}</button>`;
                     sendMail(email.trim(), Log["message"], id);
                 }, index * 600);
-            });
+            });*/
+            Log["to"].forEach(async (email) => {
+                await sendMail(email.trim(), Log["message"], id);
+              });
          }   
     });
 }
@@ -181,7 +184,9 @@ function AlertBtn(){
 var Success = 1;
 var failed = 1;
 var EmailCount = 1;
-function sendMail(mailId, htmlContent, id){
+async function sendMail(mailId, htmlContent, id){
+    return new Promise((resolve) => {
+        setTimeout(() => {
 const raw = 
 `From: ${sessionStorage.getItem("emailid")}
 To: ${mailId}      
@@ -246,6 +251,9 @@ const requestBody = {
         document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Error</td></tr>';
         console.log(EmailCount + ":- " + error.message);
     });
+    resolve();
+}, 1000);
+});
 }
 
 function textEditor(){
