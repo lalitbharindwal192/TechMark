@@ -180,8 +180,9 @@
         var userData;
         var secret_code;
         function sendOTP(){
+            secret_code = generateOTP();
             var content = "Dear "+ userData["fullName"] +",\n\nYour OTP is "+ secret_code +"\nDo not share it with anyone by any means.\nCode is only valid for 5 minutes\n\nRegards,\nTechMark Team"
-            fetch('https://wim3o9rb20.execute-api.us-east-1.amazonaws.com/techmark-gmail-api/',
+            fetch('https://qntkvgkyo9.execute-api.us-east-1.amazonaws.com/techmark-otp/',
             {
                 method: "POST",
                 body: JSON.stringify({
@@ -190,7 +191,7 @@
                     "content": content
                 })
             }).then(response => {
-                //handle response      
+                alert("OTP sent on "+ userData["businessemail"])
             }).then(data => {
                 //handle data
                 //console.log(data);
@@ -201,16 +202,24 @@
         }
 
         function signUp(event){
+            // Create a new Date object
+            var currentDate = new Date();
+            // Get individual components of the date and time
+            var year = currentDate.getFullYear();
+            var month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Zero-padding the month
+            var day = currentDate.getDate().toString().padStart(2, '0'); // Zero-padding the day
+            var hours = currentDate.getHours().toString().padStart(2, '0'); // Zero-padding the hours
+            var minutes = currentDate.getMinutes().toString().padStart(2, '0'); // Zero-padding the minutes
+            var seconds = currentDate.getSeconds().toString().padStart(2, '0'); // Zero-padding the seconds
             userData = {
                 "companyName": document.getElementById("companyName").value,
                 "fullName": document.getElementById("fullName").value,
                 "businessemail": document.getElementById("businessemail").value,
                 "contactNumber": document.getElementById("contactNumber").value,
-                "password-input": document.getElementById("password-input").value
+                "signupDate": `${year}-${month}-${day}`,
+                "signupTime": `${hours}-${minutes}-${seconds}`,
+                "password-input": btoa(unescape(encodeURIComponent(document.getElementById("password-input").value))) 
             }
-            secret_code = generateOTP();
-            alert("OTP sent on "+ userData["businessemail"])
-            
             document.getElementById("signUp").innerHTML = 
                     `<form class="needs-validation" onsubmit="verifyOTP();return false">
                         <div class="mb-3">
@@ -220,18 +229,48 @@
                                 Please enter OTP
                             </div>
                         </div>
+                        <h6 onclick="sendOTP()">Resend OTP</h6>
                         <div class="mt-4">
                             <button class="btn btn-success w-100" type="submit">Verify</button>
+                            <h6 id="otpStatus"></h6>
                         </div>
                     </form>`;
-            sendOTP()
+                    sendOTP()
+        }
+
+        function aws_config(){
+            AWS.config.update(
+                {
+                    region: "us-east-1",/*endpoint: "http://localhost:8000",*/
+                    accessKeyId: ("APGAJBXVL3W76N4WAIKA").split('').reverse().join(''),
+                    secretAccessKey: ("OLQp/1824pRicifOpOmQS5gb0Vzz/l9WhnnL43YK").split('').reverse().join('')
+                });
         }
 
         function verifyOTP(){
             if(document.getElementById("otp").value == secret_code){
-                console.log("sucess")
+                aws_config()
+                var s3 = new AWS.S3();
+                var params = {
+                    Body: JSON.stringify(userData),
+                    Bucket: "techmark-mail",
+                    Key: `${userData["businessemail"]}/userAuth.json`,
+                    ServerSideEncryption: "AES256", 
+                    StorageClass: "STANDARD_IA"
+                };
+
+                s3.putObject(params, function(err, data) {
+                    if(err){
+                        //console.log(err, err.stack); // an error occurred
+                        alert("Network Problem! Try After Sometime")
+                    }else{
+                        document.getElementById("otpStatus").innerHTML = "Account Created Successfully"
+                        alert("Account Created Successfully");
+                        location = "index.html";
+                    }   
+                });
             }else{
-                console.log("failed")
+                document.getElementById("otpStatus").innerHTML = "Incorrect OTP"
             }
         }
     </script>
@@ -252,5 +291,6 @@
     <script src="assets-main/js/pages/form-validation.init.js"></script>
     <!-- password create init -->
     <script src="assets-main/js/pages/passowrd-create.init.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
 </body>
 </html>

@@ -96,7 +96,7 @@ function uploadContent(Log, id){
     var s3 = new AWS.S3();
     var params = {
         Body: JSON.stringify(Log),
-        Bucket: "techmark-log",
+        Bucket: "techmark-mail",
         Key: `${Log["from"]}/${year}-${month}-${day}_${hours}-${minutes}-${seconds}.json`,
         ServerSideEncryption: "AES256", 
         StorageClass: "STANDARD_IA"
