@@ -114,10 +114,7 @@
                             </div>
                         </div>
                         <div class="blog_box_detail p-4">
-                            <div class="mt-3 text-center">
-                                <a href='email-dashboard.html'><p class="labal font-weight-bold bg_gradient_custom">DASHBOARD</p></a><br>
-                                <a href='email-dashboard.html'><span class="text_custom font-weight-bold">EMAIL</span></a>
-                            </div>
+                            <div class="mt-3 text-center" id="email-dashboard"></div>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -280,6 +277,20 @@
             </div>
         </section>
         <!-- End Cta -->
+
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('techmarkcode');
+            if(code){
+                document.getElementById("email-dashboard").innerHTML = 
+                `<a href='email-dashboard.html?techmarkcode=${code}'><p class="labal font-weight-bold bg_gradient_custom">DASHBOARD</p></a><br>
+                <a href='email-dashboard.html?techmarkcode=${code}'><span class="text_custom font-weight-bold">EMAIL</span></a>`;
+            }else{
+                document.getElementById("email-dashboard").innerHTML = 
+                `<a href='auth-signin.html'><p class="labal font-weight-bold bg_gradient_custom">DASHBOARD</p></a><br>
+                <a href='auth-signin.html'><span class="text_custom font-weight-bold">EMAIL</span></a>`
+            }
+            </script>
         
         <!-- Footer Start -->
         <section class="section_all bg_footer ">
@@ -362,7 +373,6 @@
 
                     </div>
                 </div>
-
             </div>
         </section>
         <!-- Footer end -->

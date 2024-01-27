@@ -58,10 +58,10 @@
                                     <p class="text-muted">Sign in to continue to TechMark</p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form onsubmit="login();return false">
+                                    <form onSubmit="login(); return false">
                                         <div class="mb-3">
                                             <label for="username" class="form-label">Email</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Enter email">
+                                            <input type="text" class="form-control" id="username" placeholder="Enter email" required>
                                         </div>
 
                                         <div class="mb-3">
@@ -70,7 +70,7 @@
                                             </div>-->
                                             <label class="form-label" for="password-input">Password</label>
                                             <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" class="form-control pe-5 password-input" placeholder="Enter password" id="password-input">
+                                                <input type="password" class="form-control pe-5 password-input" placeholder="Enter password" id="password-input" required>
                                                 <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                             </div>
                                         </div>
@@ -79,9 +79,9 @@
                                             <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
                                             <label class="form-check-label" for="auth-remember-check">Remember me</label>
                                         </div>
-
                                         <div class="mt-4">
                                             <button class="btn btn-success w-100" type="submit">Sign In</button>
+                                            <h6 id="alert"></h6>
                                         </div>
                                         <!--
                                         <div class="mt-4 text-center">
@@ -136,26 +136,43 @@
         if(sessionStorage.getItem("emailid")!=null || localStorage.getItem("emailid")!=null){
             location = "services.html";
         }
+
+        function aws_config(){
+            AWS.config.update(
+                {
+                    region: "us-east-1",/*endpoint: "http://localhost:8000",*/
+                    accessKeyId: ("APGAJBXVL3W76N4WAIKA").split('').reverse().join(''),
+                    secretAccessKey: ("OLQp/1824pRicifOpOmQS5gb0Vzz/l9WhnnL43YK").split('').reverse().join('')
+                });
+        }
         //Signin
         function login(){
             console.log()
             const username = document.getElementById("username").value;
             const password = document.getElementById("password-input").value;
-            if(username == "lalitbharindwal@gmail.com" || "apurvanaphade99@gmail.com" || "hirelanes@gmail.com" || "hr.vmaxinfo@gmail.com" || "techmark.hr@gmail.com" || "vmaxinfo123@gmail.com"){
-                if(password == "Techmark@192"){
-                    if(document.getElementById("auth-remember-check").checked){
-                        localStorage.setItem("emailid", username);
-                    }else{
-                        sessionStorage.setItem("emailid", username);
-                    }
-                    location = "services.html";
+            var params = {
+                Bucket: "techmark-mail",
+                Key: `${username}/userAuth.json`
+            };
+            aws_config()
+            var s3 = new AWS.S3();
+            s3.getObject(params, function(err, data) {
+            if (err){
+                //console.log(err.message); // an error occurred
+                if(err.message  == "The specified key does not exist."){
+                    document.getElementById("alert").innerHTML = "User Not Found";
                 }else{
-                    document.getElementById("incorrect-pass-label").innerHTML = "Incorrect Password"
+                    alert("Network Error");
                 }
             }else{
-                document.getElementById("incorrect-pass-label").innerHTML = "Incorrect Username"
-                console.log("wrong")
-            }
+                if(password == decodeURIComponent(escape(atob(JSON.parse(data.Body.toString('utf-8'))["password-input"])))){
+                    document.getElementById("alert").innerHTML = "Login Successfully";
+                    location = `services.html?techmarkcode=${btoa(unescape(encodeURIComponent(JSON.parse(data.Body.toString('utf-8'))["businessemail"])))}`
+                }else{
+                    document.getElementById("alert").innerHTML = "Incorrect Password";
+                }
+            }     
+            });
         }
     </script>
 
@@ -173,5 +190,6 @@
     <script src="assets-main/js/pages/particles.app.js"></script>
     <!-- password-addon init -->
     <script src="assets-main/js/pages/password-addon.init.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
 </body>
 </html>

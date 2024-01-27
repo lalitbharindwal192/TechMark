@@ -5,28 +5,24 @@
     <!-- Mail API -->
     <script src="mail/techmark-mail-api.js"></script>
     <script>
-        if(sessionStorage.getItem("emailid")==null){
-            if(localStorage.getItem("emailid")==null){
-                location = "auth-signin.html";
-            }else{
-                sessionStorage.setItem("emailid", localStorage.getItem("emailid"));
-                init();
-            }
-        }else{
-            init();
-        }
-
         function init(){
-                        const clientId = '36183247469-fq3mbf373vfnvnd0933l4f8udcbqfhto.apps.googleusercontent.com';
-                        const redirectUri = 'https://techmarkapp.netlify.app/email-dashboard';
-                        const clientSecret = "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";
-                        const event = {
-                            "email": sessionStorage.getItem("emailid"),
-                            "clientId": clientId,
-                            "clientSecret": clientSecret,
-                            "redirect_uri": redirectUri
+                        techmarkCode = extracttechmarkCode()
+                        if(bearer == null || bearer == "undefined"){
+                            if(techmarkCode){
+                                const clientId = '36183247469-fq3mbf373vfnvnd0933l4f8udcbqfhto.apps.googleusercontent.com';
+                                const redirectUri = 'https://techmarkapp.netlify.app/email-dashboard';
+                                const clientSecret = "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";
+                                const event = {
+                                    "email": techmarkCode,
+                                    "clientId": clientId,
+                                    "clientSecret": clientSecret,
+                                    "redirect_uri": redirectUri
+                                }
+                                flow(event);
+                            }else{
+                                location = "auth-signin.html";
+                            }
                         }
-                        flow(event);
                     }
     </script>
     <meta charset="utf-8">

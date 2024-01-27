@@ -3,6 +3,7 @@ function extractCodeFromUrl() {
     return urlParams.get('code');
   }
 
+var techmarkCode;
 function flow(event){
     const bearer = sessionStorage.getItem("bearer")
     if(bearer == null || bearer == "undefined"){
@@ -114,6 +115,14 @@ function uploadContent(Log, id){
     });
 }
 
+function extracttechmarkCode(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const techmarkcode = urlParams.get('techmarkcode');
+    if(techmarkcode){
+        return decodeURIComponent(escape(atob(techmarkcode)));
+    }
+}
+
 //Sending Script
 var tempCount = 0;
 function processEmails(obj) {
@@ -182,8 +191,8 @@ async function sendMail(mailId, htmlContent, id){
     return new Promise((resolve) => {
         setTimeout(() => {
 const raw = 
-`From: ${sessionStorage.getItem("emailid")}
-To: ${mailId}      
+`From: ${techmarkCode}
+To: ${mailId}
 Subject: ${document.getElementById("subject").value}
 MIME-Version: 1.0
 Content-Type: multipart/alternative; boundary="techmark-mail-boundary"
