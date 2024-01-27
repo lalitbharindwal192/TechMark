@@ -182,7 +182,7 @@ async function sendMail(mailId, htmlContent, id){
     return new Promise((resolve) => {
         setTimeout(() => {
 const raw = 
-`From: ${techmarkCode}
+`From: ${decodeURIComponent(escape(atob(sessionStorage.getItem("email"))))}
 To: ${mailId}
 Subject: ${document.getElementById("subject").value}
 MIME-Version: 1.0
