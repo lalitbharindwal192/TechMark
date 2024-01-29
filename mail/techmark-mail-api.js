@@ -107,8 +107,9 @@ function uploadContent(Log, id){
             //console.log(err, err.stack); // an error occurred
             alert("Network Problem! Try After Sometime")
          }else{
+            const bearer = decodeURIComponent(escape(atob(sessionStorage.getItem("bearer"))))
             Log["to"].forEach(async (email) => {
-                await sendMail(email.trim(), Log["message"], id);
+                await sendMail(email.trim(), Log["message"], id, bearer);
             });
          }   
     });
@@ -178,7 +179,7 @@ function AlertBtn(){
 var Success = 1;
 var failed = 1;
 var EmailCount = 1;
-async function sendMail(mailId, htmlContent, id){
+async function sendMail(mailId, htmlContent, id, bearer){
     return new Promise((resolve) => {
         setTimeout(() => {
 const raw = 
@@ -217,7 +218,7 @@ const requestBody = {
     fetch('https://gmail.googleapis.com/gmail/v1/users/'+ decodeURIComponent(escape(atob(sessionStorage.getItem("email"))))+ '/messages/send', {
          method: 'POST', // Change the method accordingly (POST, PUT, etc.)
          headers: {
-            'Authorization': `Bearer ${decodeURIComponent(escape(atob(sessionStorage.getItem("bearer"))))}`,
+            'Authorization': `Bearer ${bearer}`,
             'Content-Type': 'application/json', // Adjust the content type as needed
             // Add other headers if required by the API
         },
