@@ -241,6 +241,7 @@ const requestBody = {
                 document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" id="'+ id +'" onclick="processEmails(this)" style="margin:auto;padding:12px 6px 15px;max-width: 100%; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
                 failed++;
                 EmailCount++;
+                console.log(data)
             }
         }).catch(error => {
         document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Error</td></tr>';
