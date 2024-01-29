@@ -247,7 +247,7 @@ const requestBody = {
         console.log(EmailCount + ":- " + error.message);
     });
     resolve();
-}, 10000);
+}, 100);
 });
 }
 
