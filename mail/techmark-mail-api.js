@@ -100,7 +100,7 @@ function processEmails(obj) {
 
     if(validEmails){
         const bearer = decodeURIComponent(escape(atob(sessionStorage.getItem("bearer"))))
-        Log["to"].forEach(async (email) => {
+        validEmails.forEach(async (email) => {
             await sendMail(email.trim(), htmlContent, obj.id, bearer);
         });
     }
