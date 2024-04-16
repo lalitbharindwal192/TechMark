@@ -28,7 +28,7 @@ function flow(event){
 // Function to initiate OAuth flow
 function startOAuthFlow(clientId, redirect_uri) {
     const authorizationEndpoint = 'https://accounts.google.com/o/oauth2/auth';
-    const scope = 'https://www.googleapis.com/auth/gmail.compose'; // Scopes required by your application
+    const scope = 'https://mail.google.com'; // Scopes required by your application
     const responseType = 'code';
     // Construct the authorization URL
     const authUrl = `${authorizationEndpoint}?client_id=${clientId}&redirect_uri=${redirect_uri}&response_type=${responseType}&scope=${scope}`;
