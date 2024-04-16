@@ -1,3 +1,11 @@
+//flow(event)
+//extractCodeFromUrl()
+//startOAuthFlow(clientId, redirect_uri)
+//authenticate_code(authCode, event)
+//getProfile(token, event)
+//processEmails(obj)
+//sendMail(mailId, htmlContent, id, bearer)
+
 function extractCodeFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('code');
@@ -72,49 +80,6 @@ function getProfile(token, event){
     });
 }
 
-function aws_config(){
-    AWS.config.update(
-        {
-            region: "us-east-1",/*endpoint: "http://localhost:8000",*/
-            accessKeyId: ("APGAJBXVL3W76N4WAIKA").split('').reverse().join(''),
-            secretAccessKey: ("OLQp/1824pRicifOpOmQS5gb0Vzz/l9WhnnL43YK").split('').reverse().join('')
-        });
-}
-
-function uploadContent(Log, id){
-    // Create a new Date object
-    var currentDate = new Date();
-    // Get individual components of the date and time
-    var year = currentDate.getFullYear();
-    var month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Zero-padding the month
-    var day = currentDate.getDate().toString().padStart(2, '0'); // Zero-padding the day
-    var hours = currentDate.getHours().toString().padStart(2, '0'); // Zero-padding the hours
-    var minutes = currentDate.getMinutes().toString().padStart(2, '0'); // Zero-padding the minutes
-    var seconds = currentDate.getSeconds().toString().padStart(2, '0'); // Zero-padding the seconds
-    document.getElementById('send-emails-btn').innerHTML = `<button class="btn btn-sm btn-outline-primary" onclick="AlertBtn()" style="margin:auto;padding:12px 6px 15px; max-width:100%; width:100%; position: relative; margin-top: -0.8cm; background-color: tomato; border-color: tomato;">Sending...</button>`;
-    aws_config()
-    var s3 = new AWS.S3();
-    var params = {
-        Body: JSON.stringify(Log),
-        Bucket: "techmark-mail",
-        Key: `${Log["from"]}/${year}-${month}-${day}_${hours}-${minutes}-${seconds}.json`,
-        ServerSideEncryption: "AES256", 
-        StorageClass: "STANDARD_IA"
-    };
-
-    s3.putObject(params, function(err, data) {
-         if(err){
-            //console.log(err, err.stack); // an error occurred
-            alert("Network Problem! Try After Sometime")
-         }else{
-            const bearer = decodeURIComponent(escape(atob(sessionStorage.getItem("bearer"))))
-            Log["to"].forEach(async (email) => {
-                await sendMail(email.trim(), Log["message"], id, bearer);
-            });
-         }   
-    });
-}
-
 //Sending Script
 var tempCount = 0;
 function processEmails(obj) {
@@ -134,13 +99,10 @@ function processEmails(obj) {
     }
 
     if(validEmails){
-        const uploadLog = {
-            "from": sessionStorage.getItem("emailid"),
-            "to": validEmails,
-            "subject": document.getElementById("subject").value,
-            "message": htmlContent
-        }
-        uploadContent(uploadLog, obj.id)
+        const bearer = decodeURIComponent(escape(atob(sessionStorage.getItem("bearer"))))
+        Log["to"].forEach(async (email) => {
+            await sendMail(email.trim(), htmlContent, obj.id, bearer);
+        });
     }
 }
 var temp = 0;
