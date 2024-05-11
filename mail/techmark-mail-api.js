@@ -209,6 +209,8 @@ const requestBody = {
                     retry++;
                     document.getElementById("mailLog").innerHTML += '<tr><td>'+ EmailCount +'</td><td>'+ mailId +'</td><td style="color: yellow;"><i class="fas fa-times"></i>Retried</td></tr>';
                     sendMail(mailId, htmlContent, id, bearer);
+                }else{
+                    retry = 0;
                 }
             }
         }).catch(error => {
