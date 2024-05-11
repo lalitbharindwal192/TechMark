@@ -100,8 +100,11 @@ function processEmails(obj) {
 
     if(validEmails){
         const bearer = decodeURIComponent(escape(atob(sessionStorage.getItem("bearer"))))
-        validEmails.forEach(async (email) => {
-            await sendMail(email.trim(), htmlContent, obj.id, bearer);
+        validEmails.forEach((email, index) => {
+            const delay = 1500 * index;
+            setTimeout(() => {
+                sendMail(email.trim(), htmlContent, obj.id, bearer);
+            }, delay); 
         });
     }
 }
@@ -141,10 +144,7 @@ function AlertBtn(){
 var Success = 1;
 var failed = 1;
 var EmailCount = 1;
-var retry = 0;
-async function sendMail(mailId, htmlContent, id, bearer){
-    return new Promise((resolve) => {
-        setTimeout(() => {
+function sendMail(mailId, htmlContent, id, bearer){
 const raw = 
 `From: ${decodeURIComponent(escape(atob(sessionStorage.getItem("email"))))}
 To: ${mailId}
@@ -205,21 +205,11 @@ const requestBody = {
                 document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" id="'+ id +'" onclick="processEmails(this)" style="margin:auto;padding:12px 6px 15px;max-width: 100%; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
                 failed++;
                 EmailCount++;
-                if(retry == 0){
-                    retry++;
-                    document.getElementById("mailLog").innerHTML += '<tr><td>'+ EmailCount +'</td><td>'+ mailId +'</td><td style="color: yellow;"><i class="fas fa-times"></i>Retried</td></tr>';
-                    sendMail(mailId, htmlContent, id, bearer);
-                }else{
-                    retry = 0;
-                }
             }
         }).catch(error => {
         document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Error</td></tr>';
         console.log(EmailCount + ":- " + error.message);
     });
-    resolve();
-}, 1500);
-});
 }
 
 function textEditor(){
