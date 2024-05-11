@@ -101,7 +101,7 @@ function processEmails(obj) {
     if(validEmails){
         const bearer = decodeURIComponent(escape(atob(sessionStorage.getItem("bearer"))))
         validEmails.forEach((email, index) => {
-            const delay = 1500 * index;
+            const delay = 1700 * index;
             setTimeout(() => {
                 sendMail(email.trim(), htmlContent, obj.id, bearer);
             }, delay); 
