@@ -141,6 +141,7 @@ function AlertBtn(){
 var Success = 1;
 var failed = 1;
 var EmailCount = 1;
+var retry = 0;
 async function sendMail(mailId, htmlContent, id, bearer){
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -204,13 +205,18 @@ const requestBody = {
                 document.getElementById('send-emails-btn').innerHTML = '<button class="btn btn-sm btn-outline-primary" id="'+ id +'" onclick="processEmails(this)" style="margin:auto;padding:12px 6px 15px;max-width: 100%; width:100%; position: relative; margin-top: -0.8cm; background-color: #45d56d; border-color: #45d56d;">Send Email</button>';
                 failed++;
                 EmailCount++;
+                if(retry == 0){
+                    retry++;
+                    document.getElementById("mailLog").innerHTML += '<tr><td>'+ EmailCount +'</td><td>'+ mailId +'</td><td style="color: yellow;"><i class="fas fa-times"></i>Retried</td></tr>';
+                    sendMail(mailId, htmlContent, id, bearer);
+                }
             }
         }).catch(error => {
         document.getElementById("mailLog").innerHTML += '<tr><td>'+ mailId +'</td><td style="color: red;"><i class="fas fa-times"></i>Error</td></tr>';
         console.log(EmailCount + ":- " + error.message);
     });
     resolve();
-}, 100);
+}, 1500);
 });
 }
 
