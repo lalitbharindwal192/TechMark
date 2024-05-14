@@ -38,7 +38,8 @@ function startOAuthFlow(clientId, redirect_uri) {
 
 function authenticate_code(authCode, event){
     let headers = new Headers();
-    headers.append('Origin','https://techmarkapp.netlify.app');
+    headers.append('Origin','https://techmark.solutions');
+    console.log(authCode)
     fetch('https://mr6s4xnd46.execute-api.us-east-1.amazonaws.com/codeoauth/', {
         method: 'POST',
         headers: headers,
@@ -52,6 +53,7 @@ function authenticate_code(authCode, event){
             return data.text();
         }).then((data2)=>{
             const token_json = JSON.parse(data2)
+            console.log(token_json)
             getProfile(JSON.parse(token_json["body"])["access_token"], event)
     });
 }
