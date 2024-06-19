@@ -6,9 +6,9 @@
     <script src="mail/techmark-mail-api.js"></script>
     <script>
         if((sessionStorage.getItem("email") != null) && (sessionStorage.getItem("email") != "null")){
-            const clientId = '36183247469-fq3mbf373vfnvnd0933l4f8udcbqfhto.apps.googleusercontent.com';
+            const clientId = '1030186440271-rv2qkfav30ajlm673cr61lj818k7q5rf.apps.googleusercontent.com';
             const redirectUri = 'https://techmarkapp.netlify.app/email-dashboard';
-            const clientSecret = "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";
+            const clientSecret = "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";
             const event = {
                 "email": decodeURIComponent(escape(atob(sessionStorage.getItem("email")))),
                 "clientId": clientId,
